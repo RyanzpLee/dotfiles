@@ -17,21 +17,19 @@ zstyle ':omz:update' mode auto      # update automatically without asking
 
 # Only load when in use, helps speed up shell startup
 export NVM_LAZY=1
-
 plugins=(
+    zsh-autocomplete
     nvm
     git
     colored-man-pages
     zsh-autosuggestions
-    zsh-autocomplete
     fzf
 )
+
 source $ZSH/oh-my-zsh.sh
 
-# zsh-autocomplete settings to remove do you wish to see all possibilities prompt
-#zstyle ':completion:*' list-prompt   ''
-#zstyle ':completion:*' select-prompt ''
-
+zstyle ':autocomplete:*' min-delay 0.3
+zstyle ':completion:*:*:man:*:*' menu select=long search
 
 . $(brew --prefix)/etc/profile.d/z.sh
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
@@ -98,7 +96,7 @@ fzf-git-commit-hash() {
     git log --date=short --format="%C(green)%C(bold)%cd %C(auto)%h%d %s (%an)" --graph --color=always |
     fzf-down --no-sort --reverse --multi \
     --preview 'grep -o "[a-f0-9]\{7,\}" <<< {} | head -1 | xargs git show --color=always | head -'$LINES |
-    grep -o "[a-f0-9]\{7,\}" | head -1
+    rg -o "[a-f0-9]\{7,\}" | head -1
 }
 
 fzf-git-checkout-commit-hash() {
