@@ -19,6 +19,7 @@ zstyle ':omz:update' mode auto
         colored-man-pages
         zsh-autosuggestions
         fzf
+        z
     )
 
     source $ZSH/oh-my-zsh.sh
@@ -57,6 +58,8 @@ zstyle ':omz:update' mode auto
     alias stat="stat -x"
     alias grep="rg"
     alias cat="bat"
+    alias sc="source ~/.zshrc"
+    alias ec="v ~/.zshrc"
 
     # fzf settings
     [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
