@@ -53,7 +53,6 @@ zstyle ':omz:update' mode auto
     # General
     alias vim="nvim"
     alias v="nvim"
-    alias vim="nvim"
     alias cl="clear"
     alias stat="stat -x"
     alias grep="rg"
