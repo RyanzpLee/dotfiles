@@ -28,7 +28,7 @@ require('lualine').setup {
       'branch',
       'diff',
       { '"▕"', color = { fg = separator } },
-      '"🖧  " .. tostring(#vim.tbl_keys(vim.lsp.buf_get_clients()))',
+      '"🐳 🐼" .. tostring(#vim.tbl_keys(vim.lsp.buf_get_clients()))',
       { 'diagnostics', sources = { 'nvim_diagnostic' } },
       { '"▏"', color = { fg = separator } },
     },
@@ -40,12 +40,12 @@ require('lualine').setup {
     },
     lualine_y = {
       { '"▕"', color = { fg = separator } },
-      '(vim.bo.expandtab and "␠ " or "⇥ ") .. " " .. vim.bo.shiftwidth',
+      '(vim.bo.expandtab and "␠ " or "⇥ ") .. "🐼" .. vim.bo.shiftwidth',
       { '"▏"', color = { fg = separator } },
     },
     lualine_z = {
       'location',
       'progress',
     },
-  }
+  },
 }

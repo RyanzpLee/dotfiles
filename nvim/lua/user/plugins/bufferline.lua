@@ -6,18 +6,18 @@ require('bufferline').setup {
     offsets = {
       {
         filetype = 'NvimTree',
-        text = '  Files',
+        text = '✈️  Files',
         highlight = 'BufferlineOffset',
         text_align = 'left',
       },
     },
-    modified_icon = '',
+    modified_icon = '🚧',
     separator_style = 'thin',
     show_close_icon = false,
     custom_areas = {
       left = function()
         return {
-          { text = '    ', guifg = '#8fff6d' },
+          { text = '  ⛩  ', guifg = '#8fff6d' },
         }
       end,
     },

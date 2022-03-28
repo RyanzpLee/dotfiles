@@ -55,32 +55,6 @@ require'lspconfig'.bashls.setup{
   },
 }
 
-require'lspconfig'.dockerls.setup{
-  on_attach = on_attach,
-  capabilities = capabilities,
-  flags = {
-    debounce_text_changes = 150,
-  },
-}
-
-require'lspconfig'.efm.setup{
-  on_attach = on_attach,
-  capabilities = capabilities,
-  flags = {
-    debounce_text_changes = 150,
-  },
-  init_options = { documentFormatting = true },
-  filetypes = { 'js', 'jsx', 'ts', 'tsx' },
-  settings = {
-    rootMarkers = { '.git/' },
-    languages = {
-      javascript = {
-        lintCommand = 'eslint -f visualstudio --stdin --stdin-filename ${INPUT}'
-      }
-    },
-  },
-}
-
 require'lspconfig'.emmet_ls.setup{
   on_attach = on_attach,
   capabilities = capabilities,
@@ -90,14 +64,6 @@ require'lspconfig'.emmet_ls.setup{
 }
 
 require'lspconfig'.html.setup{
-  on_attach = on_attach,
-  capabilities = capabilities,
-  flags = {
-    debounce_text_changes = 150,
-  },
-}
-
-require'lspconfig'.intelephense.setup{
   on_attach = on_attach,
   capabilities = capabilities,
   flags = {
@@ -128,17 +94,7 @@ require'lspconfig'.jsonls.setup{
     }
   }
 }
-
-require'lspconfig'.solang.setup{
-  on_attach = on_attach,
-  capabilities = capabilities,
-  flags = {
-    debounce_text_changes = 150,
-  },
-  cmd = { 'solang', '--language-server', '--target', 'ewasm', '--importpath', 'node_modules' },
-}
-
-require'lspconfig'.sqls.setup{
+require'lspconfig'.tsserver.setup{
   on_attach = on_attach,
   capabilities = capabilities,
   flags = {
@@ -155,7 +111,7 @@ require'lspconfig'.sumneko_lua.setup{
   flags = {
     debounce_text_changes = 150,
   },
-  cmd = { '/home/jess/bin/lua-language-server', '-E', '/home/jess/bin/main.lua' },
+  cmd = { '~lua-language-server/bin/lua-language-server', '-E', '~lua-language-server/bin/main.lua' },
   settings = {
     Lua = {
       runtime = {
@@ -177,24 +133,7 @@ require'lspconfig'.sumneko_lua.setup{
   },
 }
 
-require'lspconfig'.tailwindcss.setup{
-  on_attach = on_attach,
-  capabilities = capabilities,
-  flags = {
-    debounce_text_changes = 150,
-  },
-}
 
-require'lspconfig'.volar.setup{
-  on_attach = on_attach,
-  capabilities = capabilities,
-  flags = {
-    debounce_text_changes = 150,
-  },
-  -- Enable "Take Over Mode" where volar will provide all TS LSP services
-  -- This drastically improves the responsiveness of diagnostic updates on change
-  filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json' },
-}
 
 vim.fn.sign_define('DiagnosticSignError', { text = '', texthl = 'DiagnosticSignError' })
 vim.fn.sign_define('DiagnosticSignWarn', { text = '', texthl = 'DiagnosticSignWarn' })

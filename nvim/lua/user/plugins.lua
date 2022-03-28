@@ -3,6 +3,7 @@ local packer = require 'lib.packer-init'
 packer.startup(function(use)
   use { 'wbthomason/packer.nvim' } -- Let packer manage itself
 
+  use { 'airblade/vim-rooter' }
   use { 'christoomey/vim-tmux-navigator' }
   use { 'farmergreg/vim-lastplace' }
   use { 'tpope/vim-commentary' }
@@ -36,6 +37,13 @@ packer.startup(function(use)
     'sickill/vim-pasta',
     config = function()
       require('user.plugins.pasta')
+    end
+  }
+
+  use {
+    'mhinz/vim-sayonara',
+    config = function()
+      require('user.plugins.sayonara')
     end
   }
 
@@ -88,6 +96,13 @@ packer.startup(function(use)
     'karb94/neoscroll.nvim',
     config = function()
       require('user.plugins.neoscroll')
+    end
+  }
+
+  use {
+    'voldikss/vim-floaterm',
+    config = function()
+      require('user.plugins.floaterm')
     end
   }
 
@@ -152,12 +167,12 @@ packer.startup(function(use)
     end,
   }
 
-  -- use {
-  --   'L3MON4D3/LuaSnip',
-  --   config = function()
-  --     require('user.plugins.luasnip')
-  --   end
-  -- }
+  use {
+    'L3MON4D3/LuaSnip',
+    config = function()
+      require('user.plugins.luasnip')
+    end
+  }
 
   use {
     'hrsh7th/nvim-cmp',
@@ -166,7 +181,7 @@ packer.startup(function(use)
       'hrsh7th/cmp-buffer',
       'saadparwaiz1/cmp_luasnip',
       'L3MON4D3/LuaSnip',
-      'jessarcher/cmp-path',
+      'hrsh7th/cmp-path',
       'hrsh7th/cmp-nvim-lua',
       'onsails/lspkind-nvim',
       'hrsh7th/cmp-nvim-lsp-signature-help',
@@ -176,6 +191,24 @@ packer.startup(function(use)
     end
   }
 
+  -- Experimental
 
+  use {
+    'luukvbaal/stabilize.nvim',
+    config = function() require('stabilize').setup() end
+  }
 
+  use {
+    'glepnir/dashboard-nvim',
+    config = function()
+      require('user.plugins.dashboard')
+    end
+  }
+
+  use {
+    'mfussenegger/nvim-lint',
+    config = function()
+      require('user.plugins.nvim-lint')
+    end
+  }
 end)

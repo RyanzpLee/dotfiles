@@ -143,3 +143,4 @@ zstyle ':omz:update' mode auto
 
 # Must source at very end of file
 source ~/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+alias luamake=/Users/rle44/lua-language-server/3rd/luamake/luamake

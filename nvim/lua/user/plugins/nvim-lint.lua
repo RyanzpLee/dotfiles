@@ -1,6 +1,7 @@
 require('lint').linters_by_ft = {
   typescript = {'eslint'},
   javascript = {'eslint'},
+  lua = {'luacheck'},
   markdown = {'markdownlint', 'proselint'},
 }
 

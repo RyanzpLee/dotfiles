@@ -1,5 +1,5 @@
 vim.cmd([[
-  highlight IndentBlanklineJess guifg=#2F313C gui=nocombine
+  highlight IndentBlankline guifg=#2F313C gui=nocombine
 ]])
 
 require('indent_blankline').setup {
@@ -15,8 +15,9 @@ require('indent_blankline').setup {
   buftype_exclude = { 'terminal', 'NvimTree' },
   show_trailing_blankline_indent = false,
   show_first_indent_level = true,
-
+  -- show_current_context = true,
+  -- show_current_context_start = true,
   char_highlight_list = {
-    'IndentBlanklineJess'
+    'IndentBlankline'
   }
 }
