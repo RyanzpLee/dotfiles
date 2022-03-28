@@ -91,20 +91,6 @@ packer.startup(function(use)
     end
   }
 
-  -- use {
-  --   'vim-test/vim-test',
-  --   config = function()
-  --     require('user.plugins.vim-test')
-  --   end
-  -- }
-
-  -- use {
-  --   'voldikss/vim-floaterm',
-  --   config = function()
-  --     require('user.plugins.floaterm')
-  --   end
-  -- }
-
   use {
     'nvim-telescope/telescope.nvim',
     requires = {

@@ -1,9 +1,7 @@
 require('lint').linters_by_ft = {
-  php = {'phpcs'}
-  -- typescript = {'eslint'},
-  -- javascript = {'eslint'},
-  -- lua = {'luacheck'},
-  -- markdown = {'markdownlint', 'proselint'},
+  typescript = {'eslint'},
+  javascript = {'eslint'},
+  markdown = {'markdownlint', 'proselint'},
 }
 
 vim.cmd([[

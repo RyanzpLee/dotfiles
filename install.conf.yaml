@@ -1,9 +1,13 @@
+- defaults:
+    link:
+      relink: true
+
 - clean: [
     '~'
 ]
 
 - link:
-    ~/.gitconfig: gitconfig
+    # ~/.gitconfig: gitconfig
     ~/.tmux: tmux
     ~/.tmux.conf: tmux.conf
     ~/.config/kitty: kitty

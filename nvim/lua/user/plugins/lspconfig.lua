@@ -70,13 +70,13 @@ require'lspconfig'.efm.setup{
     debounce_text_changes = 150,
   },
   init_options = { documentFormatting = true },
-  filetypes = { 'php' },
+  filetypes = { 'js', 'jsx', 'ts', 'tsx' },
   settings = {
     rootMarkers = { '.git/' },
     languages = {
-      php = {
-        lintCommand = './vendor/bin/phpstan analyze --error-format raw --no-progress'
-      },
+      javascript = {
+        lintCommand = 'eslint -f visualstudio --stdin --stdin-filename ${INPUT}'
+      }
     },
   },
 }
