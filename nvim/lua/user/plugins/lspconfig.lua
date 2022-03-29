@@ -111,7 +111,7 @@ require'lspconfig'.sumneko_lua.setup{
   flags = {
     debounce_text_changes = 150,
   },
-  cmd = { '~lua-language-server/bin/lua-language-server', '-E', '~lua-language-server/bin/main.lua' },
+  -- cmd = { '~lua-language-server/bin/lua-language-server', '-E', '~lua-language-server/bin/main.lua' },
   settings = {
     Lua = {
       runtime = {

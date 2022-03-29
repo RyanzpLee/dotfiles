@@ -15,6 +15,7 @@ vim.o.wrap = false
 vim.o.list = true
 vim.o.listchars = 'tab:▸ ,trail:·'
 vim.o.mouse = 'a'
+vim.o.hlsearch = false
 vim.o.splitright = true
 vim.o.splitbelow = true
 vim.o.scrolloff = 8

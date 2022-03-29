@@ -49,6 +49,9 @@ telescope.setup {
         width = 80,
       },
     },
+    oldfiles = {
+      prompt_title = 'History',
+    },
     lsp_references = {
       previewer = false,
     },
@@ -68,8 +71,12 @@ require('telescope').load_extension 'fzf'
 
 keymap('n', '<leader>pf', [[<cmd>lua require('telescope.builtin').find_files()<CR>]])
 keymap('n', '<leader>ps', [[<cmd>lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ")})<CR>]])
+keymap('n', '<leader>pw', [[<cmd>lua require('telescope.builtin').grep_string({ search = vim.fn.expand("<cword>")})<CR>]])
 keymap('n', '<C-p>', [[<cmd>lua require('telescope.builtin').git_files()<CR>]])
 keymap('n', '<leader>pF', [[<cmd>lua require('telescope.builtin').find_files({ no_ignore = true, prompt_title = 'All Files' })<CR>]]) -- luacheck: no max line length
+keymap('n', '<leader>h', [[<cmd>lua require('telescope.builtin').oldfiles()<CR>]])
+
 keymap('n', '<leader>pb', [[<cmd>lua require('telescope.builtin').buffers()<CR>]])
 keymap('n', '<leader>ph', [[<cmd>lua require('telescope.builtin').help_tags()<CR>]])
-keymap('n', '<leader>gc', [[<cmd>lua require('telescope.builtin').git_branches()<CR>]])
+
+keymap('n', '<leader>gb', [[<cmd>lua require('telescope.builtin').git_branches()<CR>]])
