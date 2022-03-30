@@ -6,12 +6,12 @@ vim.g.maplocalleader = ' '
 keymap('n', '<leader>ve', ':edit $MYVIMRC<CR>')
 keymap('n', '<leader>vs', ':source $MYVIMRC<CR>')
 -- Switch between buffers
--- keymap('n', '[b', ':BufferLineCycleNext<CR>')
--- keymap('n', ']b', ':BufferLineCycleNext<CR>')
-keymap("n", "Q", "<cmd>bdelete!<CR>", opts)
+-- Naviagate buffers
+keymap("n", "<S-l>", ":bnext<CR>")
+keymap("n", "<S-h>", ":bprevious<CR>")
 
 keymap('n', '<leader>k', ':nohlsearch<CR>')
-keymap('n', '<leader>Q', ':bufdo bdelete<CR>')
+keymap('n', 'Q', ':bufdo bdelete<CR>')
 
 -- Allow gf to open non-existent files
 keymap('', 'gf', ':edit <cfile><CR>')
