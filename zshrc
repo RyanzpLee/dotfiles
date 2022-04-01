@@ -1,24 +1,26 @@
-    source ~/git-clones/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
     source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/rle44/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
+
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 zstyle ':omz:update' mode auto
 
 # Plugins {{{
 # ==============================================================================
     plugins=(
+        zsh-autocomplete
         nvm
         git
         colored-man-pages
         zsh-autosuggestions
         fzf
-        z
+        zoxide
         autoupdate
     )
 
@@ -60,7 +62,7 @@ zstyle ':omz:update' mode auto
     alias sc="source ~/.zshrc"
     alias ec="v ~/.zshrc"
 
-    alias luamake=/Users/rle44/lua-language-server/3rd/luamake/luamake
+    alias luamake=$HOME/lua-language-server/3rd/luamake/luamake
 
     # fzf settings
     [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -129,18 +131,8 @@ zstyle ':omz:update' mode auto
 
 # }}}
 
-# Interactive shell startup scripts {{{
-# ==============================================================================
-
-    # if [[ $- == *i* && $0 == '/bin/zsh' ]]; then
-    #     ~/.dotfiles/scripts/login.sh
-    # fi
-
-# }}}
-
 # vim: set nospell foldmethod=marker foldlevel=0:
 
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Must source at very end of file
 source ~/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
