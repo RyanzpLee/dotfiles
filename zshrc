@@ -115,8 +115,8 @@ zstyle ':omz:update' mode auto
     fzf-git-commit-hash() {
         git log --date=short --format="%C(green)%C(bold)%cd %C(auto)%h%d %s (%an)" --graph --color=always |
         fzf-down --no-sort --reverse --multi \
-        --preview 'grep -o "[a-f0-9]\{7,\}" <<< {} | head -1 | xargs git show --color=always | head -'$LINES |
-        rg -o "[a-f0-9]\{7,\}" | head -1
+        --preview 'rg -o "[a-f0-9]{7,}" <<< {} | head -1 | xargs git show --color=always | head -'$LINES |
+        rg -o "[a-f0-9]{7,}" | head -1
     }
 
     fzf-git-checkout-commit-hash() {
@@ -125,7 +125,8 @@ zstyle ':omz:update' mode auto
         commitHash=$(fzf-git-commit-hash)
         git checkout $commitHash
     }
-
+    
+    alias gh='fzf-git-commit-hash'
     alias gch='fzf-git-checkout-commit-hash'
     alias gco='fzf-git-checkout'
 

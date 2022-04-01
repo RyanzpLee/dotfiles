@@ -13,6 +13,7 @@
     ~/.config/kitty: kitty
     ~/.config/nvim: nvim
     ~/.zshrc: zshrc
+    ~/.p10k.zsh: p10k.zsh
 
 - shell:
     - [git submodule update --init --recursive, Installing submodules]
