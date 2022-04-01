@@ -1,3 +1,4 @@
+    source ~/git-clones/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
     source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
@@ -11,15 +12,14 @@ zstyle ':omz:update' mode auto
 
 # Plugins {{{
 # ==============================================================================
-    export NVM_LAZY=1
     plugins=(
-        zsh-autocomplete
         nvm
         git
         colored-man-pages
         zsh-autosuggestions
         fzf
         z
+        autoupdate
     )
 
     source $ZSH/oh-my-zsh.sh
@@ -31,19 +31,19 @@ zstyle ':omz:update' mode auto
 
     # If you come from bash you might have to change your $PATH.
     export PATH=$HOME/bin:/usr/local/bin:$PATH
-
     export DEFAULT_USER="$USER"
+
+    export NVM_LAZY=1
 
     # Vim mode
     bindkey -v
     export KEYTIMEOUT=1
-
     export GIT_EDITOR=nvim
     export EDITOR='nvim'
 
     zstyle ':autocomplete:*' min-delay 0.3
     zstyle ':completion:*:*:man:*:*' menu select=long search
-
+    zstyle ':autocomplete:*' min-input 2 
 # }}}
 
 # Aliases & Functions {{{
@@ -59,6 +59,8 @@ zstyle ':omz:update' mode auto
     alias cat="bat"
     alias sc="source ~/.zshrc"
     alias ec="v ~/.zshrc"
+
+    alias luamake=/Users/rle44/lua-language-server/3rd/luamake/luamake
 
     # fzf settings
     [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -142,4 +144,3 @@ zstyle ':omz:update' mode auto
 
 # Must source at very end of file
 source ~/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-alias luamake=/Users/rle44/lua-language-server/3rd/luamake/luamake

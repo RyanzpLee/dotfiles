@@ -12,9 +12,6 @@ vim.cmd("highlight TelescopeBorder guifg = '" .. bg_light .. "' guibg = '" .. bg
 vim.cmd("highlight TelescopePromptBorder guifg = '" .. bg_lighter .. "' guibg = '" .. bg_lighter .. "'")
 vim.cmd("highlight TelescopePromptNormal guifg = '" .. fg .. "' guibg = '" .. bg_lighter .. "'")
 vim.cmd("highlight TelescopePromptPrefix guifg = '" .. purple .. "' guibg = '" .. bg_lighter .. "'")
-
--- vim.cmd("highlight TelescopePromptTitle guifg = '" .. fg .. "' guibg = '" .. purple .. "'")
--- vim.cmd("highlight TelescopePreviewTitle guifg = '" .. fg .. "' guibg = '" .. purple .. "'")
 vim.cmd [[highlight! link TelescopePromptTitle DraculaSearch]]
 vim.cmd [[highlight! link TelescopePreviewTitle WildMenu]]
 vim.cmd("highlight TelescopeResultsTitle guifg = '" .. bg_light .. "' guibg = '" .. bg_light .. "'")
@@ -38,6 +35,14 @@ telescope.setup {
       -- },
     },
     file_ignore_patterns = { '.git/' },
+    vimgrep_arguments = {
+      'rg',
+      '--no-heading',
+      '--with-filename',
+      '--line-number',
+      '--column',
+      '--smart-case',
+    },
   },
   pickers = {
     find_files = {
@@ -75,7 +80,7 @@ keymap('n', '<leader>pw', [[<cmd>lua require('telescope.builtin').grep_string({ 
 keymap('n', '<C-p>', [[<cmd>lua require('telescope.builtin').git_files()<CR>]])
 keymap('n', '<leader>pF', [[<cmd>lua require('telescope.builtin').find_files({ no_ignore = true, prompt_title = 'All Files' })<CR>]]) -- luacheck: no max line length
 keymap('n', '<leader>h', [[<cmd>lua require('telescope.builtin').oldfiles()<CR>]])
-
+keymap('n', '<leader>pg', [[<cmd>lua require'telescope.builtin'.live_grep{ vimgrep_arguments = { 'rg', '--color=never', '--no-heading', '--with-filename', '--line-number', '--column', '--smart-case', '--hidden' } }<CR>]])
 keymap('n', '<leader>pb', [[<cmd>lua require('telescope.builtin').buffers()<CR>]])
 keymap('n', '<leader>ph', [[<cmd>lua require('telescope.builtin').help_tags()<CR>]])
 

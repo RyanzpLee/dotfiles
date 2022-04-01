@@ -12,7 +12,7 @@ packer.startup(function(use)
   use { 'tpope/vim-eunuch' } -- Adds :Rename, :SudoWrite
   use { 'tpope/vim-unimpaired' } -- Adds [b and other handy mappings
   use { 'tpope/vim-sleuth' } -- Indent autodetection with editorconfig support
-  -- use { 'williamboman/nvim-lsp-installer' }
+  use { 'williamboman/nvim-lsp-installer' }
 
   use {
     'dracula/vim',

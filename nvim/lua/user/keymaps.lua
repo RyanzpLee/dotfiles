@@ -46,9 +46,13 @@ keymap('n', '<C-Left>', ':vertical resize -2<CR>')
 keymap('n', '<C-Right>', ':vertical resize +2<CR>')
 
 -- Move text up and down
-keymap('n', '<A-j>', ':m .+1<CR>==') -- TODO: Something seems to be sending Alt occasionally and makes me mess up
-keymap('n', '<A-k>', ':m .-2<CR>==') -- TODO: Something seems to be sending Alt occasionally and makes me mess up
-keymap('i', '<A-j>', '<Esc>:m .+1<CR>==gi')
-keymap('i', '<A-k>', '<Esc>:m .-2<CR>==gi')
-keymap('x', '<A-j>', ":m '>+1<CR>gv-gv")
-keymap('x', '<A-k>', ":m '<-2<CR>gv-gv")
+-- keymap('n', '<A-j>', ':m .+1<CR>==') -- TODO: Something seems to be sending Alt occasionally and makes me mess up
+-- keymap('n', '<A-k>', ':m .-2<CR>==') -- TODO: Something seems to be sending Alt occasionally and makes me mess up
+-- keymap('i', '<A-j>', '<Esc>:m .+1<CR>==gi')
+-- keymap('i', '<A-k>', '<Esc>:m .-2<CR>==gi')
+-- keymap('x', '<A-j>', ":m '>+1<CR>gv-gv")
+-- keymap('x', '<A-k>', ":m '<-2<CR>gv-gv")
+keymap('n', '<A-k>', ':m .-2<CR>==')
+keymap('n', '<A-j>', ':m .+1<CR>==')
+keymap('x', '<A-k>', ':m .-2<CR>==')
+keymap('x', '<A-j>', ':m .+1<CR>==')
