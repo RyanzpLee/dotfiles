@@ -5,11 +5,11 @@ vim.g.maplocalleader = ' '
 
 keymap('n', '<leader>ve', ':edit $MYVIMRC<CR>')
 keymap('n', '<leader>vs', ':source $MYVIMRC<CR>')
--- Switch between buffers
--- Naviagate buffers
--- keymap("n", "<S-l>", ":bnext<CR>")
--- keymap("n", "<S-h>", ":bprevious<CR>")
+-- Quick fix list
+keymap('n', '<C-q>', "<cmd>lua require'lib.utils'.toggle_qf('q')<CR>")
+keymap('n', '<leader>Q', "<cmd>lua require'lib.utils'.toggle_qf('l')<CR>")
 
+-- Turn off incremental search highlighting
 keymap('n', '<leader>k', ':nohlsearch<CR>')
 
 -- Allow gf to open non-existent files

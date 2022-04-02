@@ -13,6 +13,7 @@ packer.startup(function(use)
   use { 'tpope/vim-unimpaired' } -- Adds [b and other handy mappings
   use { 'tpope/vim-sleuth' } -- Indent autodetection with editorconfig support
   use { 'williamboman/nvim-lsp-installer' }
+  use {'kevinhwang91/nvim-bqf'}
 
   use {
     'dracula/vim',
@@ -193,7 +194,10 @@ packer.startup(function(use)
       require('user.plugins.cmp')
     end
   }
-
+   use {
+      'prettier/vim-prettier',
+      run = 'yarn install --frozen-lockfile --production',
+    }
   -- Experimental
 
   use {
