@@ -4,7 +4,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 keymap('n', '<leader>ve', ':edit $MYVIMRC<CR>')
-keymap('n', '<leader>vs', ':source $MYVIMRC<CR>')
+keymap('n', '<leader>vs', ':source ~/.config/nvim/init.lua<CR>')
 -- Quick fix list
 keymap('n', '<C-q>', "<cmd>lua require'lib.utils'.toggle_qf('q')<CR>")
 keymap('n', '<leader>Q', "<cmd>lua require'lib.utils'.toggle_qf('l')<CR>")
