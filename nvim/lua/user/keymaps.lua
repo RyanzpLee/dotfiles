@@ -10,7 +10,7 @@ keymap('n', '<leader>vs', ':source $MYVIMRC<CR>')
 -- keymap("n", "<S-l>", ":bnext<CR>")
 -- keymap("n", "<S-h>", ":bprevious<CR>")
 
--- keymap('n', '<leader>k', ':nohlsearch<CR>')
+keymap('n', '<leader>k', ':nohlsearch<CR>')
 
 -- Allow gf to open non-existent files
 keymap('', 'gf', ':edit <cfile><CR>')
