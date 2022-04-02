@@ -7,11 +7,10 @@ keymap('n', '<leader>ve', ':edit $MYVIMRC<CR>')
 keymap('n', '<leader>vs', ':source $MYVIMRC<CR>')
 -- Switch between buffers
 -- Naviagate buffers
-keymap("n", "<S-l>", ":bnext<CR>")
-keymap("n", "<S-h>", ":bprevious<CR>")
+-- keymap("n", "<S-l>", ":bnext<CR>")
+-- keymap("n", "<S-h>", ":bprevious<CR>")
 
-keymap('n', '<leader>k', ':nohlsearch<CR>')
-keymap('n', 'Q', ':bufdo bdelete<CR>')
+-- keymap('n', '<leader>k', ':nohlsearch<CR>')
 
 -- Allow gf to open non-existent files
 keymap('', 'gf', ':edit <cfile><CR>')
@@ -46,8 +45,8 @@ keymap('n', '<C-Left>', ':vertical resize -2<CR>')
 keymap('n', '<C-Right>', ':vertical resize +2<CR>')
 
 -- Move text up and down
-keymap('n', '<A-j>', ':m .+1<CR>==') -- TODO: Something seems to be sending Alt occasionally and makes me mess up
-keymap('n', '<A-k>', ':m .-2<CR>==') -- TODO: Something seems to be sending Alt occasionally and makes me mess up
+keymap('n', '<A-j>', ':m .+1<CR>==')
+keymap('n', '<A-k>', ':m .-2<CR>==')
 keymap('i', '<A-j>', '<Esc>:m .+1<CR>==gi')
 keymap('i', '<A-k>', '<Esc>:m .-2<CR>==gi')
 keymap('x', '<A-j>', ":m '>+1<CR>gv-gv")

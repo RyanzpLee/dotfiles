@@ -139,6 +139,9 @@ packer.startup(function(use)
     'tpope/vim-fugitive',
     requires = 'tpope/vim-rhubarb',
     cmd = 'G',
+    config = function ()
+      require('user.plugins.fugitive')
+    end
   }
 
   use {
