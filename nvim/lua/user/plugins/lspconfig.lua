@@ -1,5 +1,5 @@
 local buf_option = vim.api.nvim_buf_set_option
-local buf_keymap = require 'lib.utils'.buf_keymap
+local buf_keymap = require'lib.utils'.buf_keymap
 local lsp_installer = require 'nvim-lsp-installer'
 local lspconfig = require 'lspconfig'
 
@@ -9,88 +9,87 @@ local eslint = require "efm/eslint"
 local luafmt = require "efm/luafmt"
 local rustfmt = require "efm/rustfmt"
 
-
 vim.diagnostic.config {
-  virtual_text = false,
-  severity_sort = true,
-  float = {
-    source = true,
-    focus = false,
-    format = function(diagnostic)
-      if diagnostic.user_data ~= nil and diagnostic.user_data.lsp.code ~= nil then
-        return string.format("%s: %s", diagnostic.user_data.lsp.code, diagnostic.message)
-      end
-      return diagnostic.message
-    end,
-  }
+    virtual_text = false,
+    severity_sort = true,
+    float = {
+        source = true,
+        focus = false,
+        format = function(diagnostic)
+            if diagnostic.user_data ~= nil and diagnostic.user_data.lsp.code ~= nil then
+                return string.format("%s: %s", diagnostic.user_data.lsp.code, diagnostic.message)
+            end
+            return diagnostic.message
+        end
+    }
 }
 
 local on_attach = function(_, bufnr)
-  buf_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+    buf_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-  buf_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>')
-  buf_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>')
-  buf_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>')
-  buf_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>')
-  buf_keymap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>')
-  buf_keymap(bufnr, 'n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>')
-  buf_keymap(bufnr, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>')
-  buf_keymap(bufnr, 'n', 'gr', ':Telescope lsp_references<CR>')
+    buf_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>')
+    buf_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>')
+    buf_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>')
+    buf_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>')
+    buf_keymap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>')
+    buf_keymap(bufnr, 'n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>')
+    buf_keymap(bufnr, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>')
+    buf_keymap(bufnr, 'n', 'gr', ':Telescope lsp_references<CR>')
 
-  -- buf_keymap(bufnr, 'n', '<leader>ca', ':Telescope lsp_code_actions<CR>')
-  -- buf_keymap(bufnr, 'v', '<leader>ca', ':Telescope lsp_range_code_actions<CR>')
-  buf_keymap(bufnr, 'n', '<leader>ca', ':CodeActionMenu<CR>')
-  buf_keymap(bufnr, 'v', '<leader>ca', ':CodeActionMenu<CR>')
+    -- buf_keymap(bufnr, 'n', '<leader>ca', ':Telescope lsp_code_actions<CR>')
+    -- buf_keymap(bufnr, 'v', '<leader>ca', ':Telescope lsp_range_code_actions<CR>')
+    buf_keymap(bufnr, 'n', '<leader>ca', ':CodeActionMenu<CR>')
+    buf_keymap(bufnr, 'v', '<leader>ca', ':CodeActionMenu<CR>')
 
-  buf_keymap(bufnr, 'n', '<leader>d', '<cmd>lua vim.diagnostic.open_float()<CR>')
-  buf_keymap(bufnr, 'n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
-  buf_keymap(bufnr, 'n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>')
-  buf_keymap(bufnr, 'n', '<leader>dl', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>')
-  -- buf_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>')
-  -- buf_keymap(bufnr, 'n', '<leader>so', [[<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]])
-  vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
+    buf_keymap(bufnr, 'n', '<leader>d', '<cmd>lua vim.diagnostic.open_float()<CR>')
+    buf_keymap(bufnr, 'n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
+    buf_keymap(bufnr, 'n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>')
+    buf_keymap(bufnr, 'n', '<leader>dl', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>')
+    -- buf_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>')
+    -- buf_keymap(bufnr, 'n', '<leader>so', [[<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]])
+    vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
 end
 
 -- nvim-cmp supports additional completion capabilities
-local capabilities = require 'cmp_nvim_lsp'.update_capabilities(vim.lsp.protocol.make_client_capabilities())
-local ts_utils_attach = require 'nvim-lsp-ts-utils'
+local capabilities = require'cmp_nvim_lsp'.update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 lsp_installer.on_server_ready(function(server)
-  local default_opts = {
-    capabilities = capabilities,
-    on_attach = on_attach,
-    autostart = true,
-    settings = {
-        Lua = {
-            diagnostics = {
-                globals = { 'vim' }
+    local default_opts = {
+        capabilities = capabilities,
+        on_attach = on_attach,
+        autostart = true,
+        settings = {
+            Lua = {
+                diagnostics = {
+                    globals = {'vim'}
+                }
             }
         }
     }
-  }
-   local server_opts = {
+    local server_opts = {
         ['sumneko_lua'] = function()
-       default_opts = {
-        on_attach = on_attach,
-        capabilities = capabilities,
+            default_opts = {
+                on_attach = on_attach,
+                capabilities = capabilities,
                 settings = {
-          Lua = {
-            diagnostics = {
-              globals = { 'vim' }
-            }
-          }
-        }
+                    Lua = {
+                        diagnostics = {
+                            globals = {'vim'}
+                        }
+                    }
+                }
 
-      }
-    end,
+            }
+        end,
         ['tsserver'] = function()
             default_opts = {
-                root_dir = lspconfig.util.root_pattern("yarn.lock", "lerna.json", ".git"),
                 on_attach = function(client, bufnr)
                     -- This makes sure tsserver is not used for formatting (I prefer prettier)
                     client.resolved_capabilities.document_formatting = false
+                    local ts_utils = require 'nvim-lsp-ts-utils'
+                    ts_utils.setup {}
+                    ts_utils.setup_client(client)
                     on_attach(client, bufnr)
-                    ts_utils_attach(client)
                 end,
                 settings = {
                     documentFormatting = false
@@ -104,33 +103,26 @@ lsp_installer.on_server_ready(function(server)
 
         ['efm'] = function()
             default_opts = {
-                root_dir = lspconfig.util.root_pattern {'.git/', '.'},
+                root_dir = vim.loop.cwd,
                 init_options = {
                     documentFormatting = true
                 },
                 settings = {
-                    rootMarkers = {".git/", ".", "stylua.toml"},
+                    rootMarkers = {".git/"},
                     languages = {
-                        lua = {luafmt},
-                        typescript = {prettier},
-                        javascript = {prettier},
-                        typescriptreact = {prettier},
-                        javascriptreact = {prettier},
-                        ["javascript.jsx"] = {prettier},
-                        ["typescript.tsx"] = {prettier},
+                        lua = {stylua},
+                        -- go = {golint, goimports},
+                        typescript = {prettier, eslint},
+                        javascript = {prettier, eslint},
+                        typescriptreact = {prettier, eslint},
+                        javascriptreact = {prettier, eslint},
                         yaml = {prettier},
                         json = {prettier},
                         html = {prettier},
-                        -- less = {prettier},
-                        -- scss = {prettier},
-                        -- css = {prettier},
-                        markdown = {prettier}
+                        scss = {prettier},
+                        css = {prettier},
+                        markdown = {prettier},
                     }
-                },
-                filetypes = {"javascript", "javascriptreact", "javascript.jsx", "typescript", "typescript.tsx",
-                             "typescriptreact", "lua", "json", "html" -- "less",
-                -- "scss",
-                -- "css",
                 },
                 on_attach = function(client)
                     client.resolved_capabilities.document_formatting = true
@@ -236,7 +228,6 @@ end)
 --     },
 -- }
 
-
 -- local languages = {
 --     lua = {luafmt},
 --     typescript = {prettier, eslint},
@@ -269,19 +260,31 @@ end)
 --     capabilities = capabilities
 -- }))
 
-vim.fn.sign_define('DiagnosticSignError', { text = '', texthl = 'DiagnosticSignError' })
-vim.fn.sign_define('DiagnosticSignWarn', { text = '', texthl = 'DiagnosticSignWarn' })
-vim.fn.sign_define('DiagnosticSignInfo', { text = '', texthl = 'DiagnosticSignInfo' })
-vim.fn.sign_define('DiagnosticSignHint', { text = '', texthl = 'DiagnosticSignHint' })
+vim.fn.sign_define('DiagnosticSignError', {
+    text = '',
+    texthl = 'DiagnosticSignError'
+})
+vim.fn.sign_define('DiagnosticSignWarn', {
+    text = '',
+    texthl = 'DiagnosticSignWarn'
+})
+vim.fn.sign_define('DiagnosticSignInfo', {
+    text = '',
+    texthl = 'DiagnosticSignInfo'
+})
+vim.fn.sign_define('DiagnosticSignHint', {
+    text = '',
+    texthl = 'DiagnosticSignHint'
+})
 
 -- suppress error messages from lang servers
 vim.notify = function(msg, log_level, _)
-  if msg:match 'exit code' then
-    return
-  end
-  if log_level == vim.log.levels.ERROR then
-    vim.api.nvim_err_writeln(msg)
-  else
-    vim.api.nvim_echo({ { msg } }, true, {})
-  end
+    if msg:match 'exit code' then
+        return
+    end
+    if log_level == vim.log.levels.ERROR then
+        vim.api.nvim_err_writeln(msg)
+    else
+        vim.api.nvim_echo({{msg}}, true, {})
+    end
 end

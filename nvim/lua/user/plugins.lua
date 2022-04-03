@@ -220,10 +220,10 @@ packer.startup(function(use)
     end
   }
 -- not sure if this is pulling in the correct config files in monorepos
-  use {
-    'mfussenegger/nvim-lint',
-    config = function()
-      require('user.plugins.nvim-lint')
-    end
-  }
+  -- use {
+  --   'mfussenegger/nvim-lint',
+  --   config = function()
+  --     require('user.plugins.nvim-lint')
+  --   end
+  -- }
 end)
