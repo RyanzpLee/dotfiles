@@ -1,6 +1,6 @@
 local M = {}
 
-local lsputils = require "config.lsp.utils"
+local lsputils = require "user.plugins.lsp.utils"
 
 function M.config(install_server)
   return {

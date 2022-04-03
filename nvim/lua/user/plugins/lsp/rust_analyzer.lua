@@ -1,6 +1,6 @@
 local M = {}
 
-local lsputils = require "config.lsp.utils"
+local lsputils = require "user.plugins.lsp.utils"
 
 CONFIG = {}
 
@@ -33,7 +33,7 @@ function M.autocmds()
         autocmd!
 
         autocmd FileType rust packadd termdebug
-        autocmd BufEnter *.rs lua require("config.lsp.rust_analyzer").keymappings()
+        autocmd BufEnter *.rs lua require("user.plugins.lsp.rust_analyzer").keymappings()
       augroup END
 
     ]],

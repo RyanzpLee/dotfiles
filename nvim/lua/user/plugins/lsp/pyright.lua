@@ -1,6 +1,6 @@
 local M = {}
 
-local lsputils = require "config.lsp.utils"
+local lsputils = require "user.plugins.lsp.utils"
 
 function M.config(installed_server)
   return {
@@ -21,7 +21,7 @@ function M.autocmds()
       augroup PYTHON
         autocmd!
 
-        autocmd BufEnter *.py lua require("config.lsp.pyright").keymappings()
+        autocmd BufEnter *.py lua require("user.plugins.lsp.pyright").keymappings()
       augroup END
 
     ]],

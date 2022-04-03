@@ -1,6 +1,6 @@
 local M = {}
 
-local lsputils = require "config.lsp.utils"
+local lsputils = require "user.plugins.lsp.utils"
 local lspconfig = require "lspconfig"
 
 function M.lsp_attach(client, bufnr)
@@ -79,8 +79,8 @@ function M.autocmds()
       augroup TYPESCRIPT
         autocmd!
 
-        autocmd BufEnter *.ts lua require("config.lsp.tsserver").keymappings()
-        autocmd BufEnter *.js lua require("config.lsp.tsserver").keymappings()
+        autocmd BufEnter *.ts lua require("user.plugins.lsp.tsserver").keymappings()
+        autocmd BufEnter *.js lua require("user.plugins.lsp.tsserver").keymappings()
       augroup END
 
     ]],
