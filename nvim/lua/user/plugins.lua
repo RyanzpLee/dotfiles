@@ -166,6 +166,10 @@ packer.startup(function(use)
       require('user.plugins.lsp').setup()
     end
   }
+  use {"ray-x/lsp_signature.nvim"}
+
+  use {"simrat39/rust-tools.nvim"}
+  use { "folke/lua-dev.nvim", event = "VimEnter" }
 
   use {
     'j-hui/fidget.nvim',

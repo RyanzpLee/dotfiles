@@ -98,7 +98,6 @@ function M.keymappings()
     nowait = true,
   }
 
-  local wk = require "which-key"
   local mappings = {
     ["r"] = {
       name = "Run",
@@ -118,7 +117,6 @@ function M.keymappings()
       l = { "", "Not defined" },
     },
   }
-  wk.register(mappings, opts)
 end
 
 return M

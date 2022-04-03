@@ -66,10 +66,6 @@ function M.lsp_config(client, bufnr)
   local lspkeymappings = require "keymappings"
   lspkeymappings.setup_lsp_mappings()
 
-  -- LSP and DAP menu
-  -- local whichkey = require "config.which-key"
-  -- whichkey.register_lsp(client)
-
   if client.resolved_capabilities.document_formatting then
     vim.cmd "autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting()"
   end
