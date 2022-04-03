@@ -3,8 +3,8 @@
 --  big shoutout to https://github.com/ThePrimeagen and https://github.com/tjdevries
 
 require 'user.options'
-require 'user.keymaps'
 require 'user.plugins'
+require 'user.keymaps'
 require 'user.misc'
 
 -- vim: nospell

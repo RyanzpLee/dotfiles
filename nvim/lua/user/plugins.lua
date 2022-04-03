@@ -153,23 +153,17 @@ packer.startup(function(use)
 
   use {
     'neovim/nvim-lspconfig',
-    event = "BufReadPre",
     requires = {
       'b0o/schemastore.nvim',
       'folke/lsp-colors.nvim',
       'weilbith/nvim-code-action-menu',
       'jose-elias-alvarez/nvim-lsp-ts-utils',
-      'williamboman/nvim-lsp-installer',
-      'jose-elias-alvarez/null-ls.nvim'
+      'williamboman/nvim-lsp-installer'
     },
     config = function ()
-      require('user.plugins.lsp').setup()
+      require('user.plugins.lspconfig')
     end
   }
-  use {"ray-x/lsp_signature.nvim"}
-
-  use {"simrat39/rust-tools.nvim"}
-  use { "folke/lua-dev.nvim", event = "VimEnter" }
 
   use {
     'j-hui/fidget.nvim',
@@ -201,15 +195,18 @@ packer.startup(function(use)
       require('user.plugins.cmp')
     end
   }
-
-
-  use    {
-   'sbdchd/neoformat',
-  config = function()
-  require('user.plugins.neoformat')
-   end
-  }
-
+  -- These aren't working well with monorepo right now so trying efm
+  -- use    {
+  --  'sbdchd/neoformat',
+  -- config = function()
+  -- require('user.plugins.neoformat')
+  --  end
+  -- }
+  -- use {
+  --    'prettier/vim-prettier',
+  --    run = 'yarn install --frozen-lockfile --production',
+  --  }
+  -- Experimental
 
   use {
     'luukvbaal/stabilize.nvim',
@@ -222,7 +219,6 @@ packer.startup(function(use)
       require('user.plugins.dashboard')
     end
   }
-
 -- not sure if this is pulling in the correct config files in monorepos
   -- use {
   --   'mfussenegger/nvim-lint',
