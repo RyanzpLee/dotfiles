@@ -153,15 +153,17 @@ packer.startup(function(use)
 
   use {
     'neovim/nvim-lspconfig',
+    event = "BufReadPre",
     requires = {
       'b0o/schemastore.nvim',
       'folke/lsp-colors.nvim',
       'weilbith/nvim-code-action-menu',
       'jose-elias-alvarez/nvim-lsp-ts-utils',
-      'williamboman/nvim-lsp-installer'
+      'williamboman/nvim-lsp-installer',
+      'jose-elias-alvarez/null-ls.nvim'
     },
     config = function ()
-      require('user.plugins.lspconfig')
+      require('user.plugins.lsp').setup()
     end
   }
 
@@ -195,18 +197,15 @@ packer.startup(function(use)
       require('user.plugins.cmp')
     end
   }
-  -- These aren't working well with monorepo right now so trying efm
-  -- use    {
-  --  'sbdchd/neoformat',
-  -- config = function()
-  -- require('user.plugins.neoformat')
-  --  end
-  -- }
-  -- use {
-  --    'prettier/vim-prettier',
-  --    run = 'yarn install --frozen-lockfile --production',
-  --  }
-  -- Experimental
+
+
+  use    {
+   'sbdchd/neoformat',
+  config = function()
+  require('user.plugins.neoformat')
+   end
+  }
+
 
   use {
     'luukvbaal/stabilize.nvim',
@@ -219,6 +218,7 @@ packer.startup(function(use)
       require('user.plugins.dashboard')
     end
   }
+
 -- not sure if this is pulling in the correct config files in monorepos
   -- use {
   --   'mfussenegger/nvim-lint',

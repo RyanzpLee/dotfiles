@@ -1,5 +1,18 @@
 local keymap = require("lib.utils").keymap
 
+local M = {}
+
+local opts = { noremap = true, silent = false }
+local mode_adapters = {
+    insert_mode = "i",
+    normal_mode = "n",
+    term_mode = "t",
+    visual_mode = "v",
+    visual_block_mode = "x",
+    command_mode = "c"
+}
+
+
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
@@ -53,3 +66,37 @@ keymap("i", "<A-j>", "<Esc>:m .+1<CR>==gi")
 keymap("i", "<A-k>", "<Esc>:m .-2<CR>==gi")
 keymap("x", "<A-j>", ":m '>+1<CR>gv-gv")
 keymap("x", "<A-k>", ":m '<-2<CR>gv-gv")
+
+
+local lsp_keymappings = {
+
+    normal_mode = {
+        ["K"] = "<Cmd>lua vim.lsp.buf.hover()<CR>",
+        ["gD"] = "<Cmd>lua vim.lsp.buf.declaration()<CR>",
+        ["gd"] = "<Cmd>lua vim.lsp.buf.definition()<CR>",
+        ["gi"] = "<Cmd>lua vim.lsp.buf.implementation()<CR>",
+        ["<leader>rn"] = "<Cmd>lua vim.lsp.buf.rename()<CR>",
+        ["<C-k>"] = "<Cmd>lua vim.lsp.buf.signature_help()<CR>",
+        ["<leader>d"] = "<Cmd>lua vim.diagnostic.open_float()<CR>",
+        ["[d"] = "<Cmd>lua vim.lsp.diagnostic.goto_prev()<CR>",
+        ["]d"] = "<Cmd>lua vim.lsp.diagnostic.goto_next()<CR>",
+        ["gr"] = ":Telescope lsp_references<CR>",
+        ["<leader>ca"] = ":CodeActionMenu<CR>"
+    },
+    visual_mode = {
+        ["<leader>ca"] = ":CodeActionMenu<CR>"
+    }
+}
+
+function M.map(mode, keymaps)
+  mode = mode_adapters[mode] and mode_adapters[mode] or mode
+  for k, v in pairs(keymaps) do
+    M.set_keymaps(mode, k, v)
+  end
+end
+
+function M.setup_lsp_mappings()
+  for mode, mapping in pairs(lsp_keymappings) do
+    M.map(mode, mapping)
+  end
+end
