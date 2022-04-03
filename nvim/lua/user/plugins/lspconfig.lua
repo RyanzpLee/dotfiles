@@ -1,6 +1,14 @@
 local buf_option = vim.api.nvim_buf_set_option
 local buf_keymap = require 'lib.utils'.buf_keymap
-local lsp_installer = require('nvim-lsp-installer')
+local lsp_installer = require 'nvim-lsp-installer'
+local lspconfig = require 'lspconfig'
+
+-- Formatting via efm
+local prettier = require "efm/prettier"
+local eslint = require "efm/eslint"
+local luafmt = require "efm/luafmt"
+local rustfmt = require "efm/rustfmt"
+
 
 vim.diagnostic.config {
   virtual_text = false,
@@ -40,29 +48,103 @@ local on_attach = function(_, bufnr)
   buf_keymap(bufnr, 'n', '<leader>dl', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>')
   -- buf_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>')
   -- buf_keymap(bufnr, 'n', '<leader>so', [[<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]])
-  -- vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
+  vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
 end
 
 -- nvim-cmp supports additional completion capabilities
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require 'cmp_nvim_lsp'.update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local ts_utils_attach = require 'nvim-lsp-ts-utils'
 
 lsp_installer.on_server_ready(function(server)
-    local opts = {
-        capabilities = capabilities,
-        on_attach = on_attach,
-        root_dir = vim.loop.cwd,
-        autostart = true,
-        settings = {
-            Lua = {
-                diagnostics = { globals = {'vim'} }
-            },
-        },
+  local default_opts = {
+    capabilities = capabilities,
+    on_attach = on_attach,
+    autostart = true,
+    settings = {
+        Lua = {
+            diagnostics = {
+                globals = { 'vim' }
+            }
+        }
     }
+  }
+   local server_opts = {
+        ['sumneko_lua'] = function()
+       default_opts = {
+        on_attach = on_attach,
+        capabilities = capabilities,
+                settings = {
+          Lua = {
+            diagnostics = {
+              globals = { 'vim' }
+            }
+          }
+        }
 
-    server:setup(opts)
+      }
+    end,
+        ['tsserver'] = function()
+            default_opts = {
+                root_dir = lspconfig.util.root_pattern("yarn.lock", "lerna.json", ".git"),
+                on_attach = function(client, bufnr)
+                    -- This makes sure tsserver is not used for formatting (I prefer prettier)
+                    client.resolved_capabilities.document_formatting = false
+                    on_attach(client, bufnr)
+                    ts_utils_attach(client)
+                end,
+                settings = {
+                    documentFormatting = false
+                },
+                init_options = {
+                    hostInfo = "neovim"
+                },
+                capabilities = capabilities
+            }
+        end,
+
+        ['efm'] = function()
+            default_opts = {
+                root_dir = lspconfig.util.root_pattern {'.git/', '.'},
+                init_options = {
+                    documentFormatting = true
+                },
+                settings = {
+                    rootMarkers = {".git/", ".", "stylua.toml"},
+                    languages = {
+                        lua = {luafmt},
+                        typescript = {prettier},
+                        javascript = {prettier},
+                        typescriptreact = {prettier},
+                        javascriptreact = {prettier},
+                        ["javascript.jsx"] = {prettier},
+                        ["typescript.tsx"] = {prettier},
+                        yaml = {prettier},
+                        json = {prettier},
+                        html = {prettier},
+                        -- less = {prettier},
+                        -- scss = {prettier},
+                        -- css = {prettier},
+                        markdown = {prettier}
+                    }
+                },
+                filetypes = {"javascript", "javascriptreact", "javascript.jsx", "typescript", "typescript.tsx",
+                             "typescriptreact", "lua", "json", "html" -- "less",
+                -- "scss",
+                -- "css",
+                },
+                on_attach = function(client)
+                    client.resolved_capabilities.document_formatting = true
+                    on_attach(client)
+                end
+            }
+        end
+
+    }
+    local server_options = server_opts[server.name] and server_opts[server.name]() or default_opts
+    server:setup(server_options)
 end)
 
--- require'lspconfig'.bashls.setup{
+-- lspconfig.bashls.setup{
 --   on_attach = on_attach,
 --   capabilities = capabilities,
 --   flags = {
@@ -70,16 +152,7 @@ end)
 --   },
 -- }
 
--- require'lspconfig'.emmet_ls.setup{
---   on_attach = on_attach,
---   capabilities = capabilities,
---   root_dir = vim.loop.cwd,
---   flags = {
---     debounce_text_changes = 150,
---   },
--- }
-
--- require'lspconfig'.html.setup{
+-- lspconfig.emmet_ls.setup{
 --   on_attach = on_attach,
 --   capabilities = capabilities,
 --   root_dir = vim.loop.cwd,
@@ -88,7 +161,16 @@ end)
 --   },
 -- }
 
--- require'lspconfig'.eslint.setup{
+-- lspconfig.html.setup{
+--   on_attach = on_attach,
+--   capabilities = capabilities,
+--   root_dir = vim.loop.cwd,
+--   flags = {
+--     debounce_text_changes = 150,
+--   },
+-- }
+
+-- lspconfig.eslint.setup{
 --   on_attach = on_attach,
 --   capabilities = capabilities,
 --   root_dir = vim.loop.cwd,
@@ -100,7 +182,7 @@ end)
 --   },
 -- }
 
--- require'lspconfig'.jsonls.setup{
+-- lspconfig.jsonls.setup{
 --   on_attach = on_attach,
 --   capabilities = capabilities,
 --   root_dir = vim.loop.cwd,
@@ -113,7 +195,7 @@ end)
 --     }
 --   }
 -- }
--- require'lspconfig'.tsserver.setup{
+-- lspconfig.tsserver.setup{
 --   on_attach = on_attach,
 --   capabilities = capabilities,
 --   root_dir = vim.loop.cwd,
@@ -128,7 +210,7 @@ end)
 -- table.insert(runtime_path, "lua/?.lua")
 -- table.insert(runtime_path, "lua/?/init.lua")
 
--- require'lspconfig'.sumneko_lua.setup {
+-- lspconfig.sumneko_lua.setup {
 --     cmd = {sumneko_binary_path, "-E", sumneko_root_path .. "/main.lua"};
 --     settings = {
 --         Lua = {
@@ -153,6 +235,39 @@ end)
 --         },
 --     },
 -- }
+
+
+-- local languages = {
+--     lua = {luafmt},
+--     typescript = {prettier, eslint},
+--     javascript = {prettier, eslint},
+--     typescriptreact = {prettier, eslint},
+--     javascriptreact = {prettier, eslint},
+--     yaml = {prettier},
+--     json = {prettier},
+--     html = {prettier},
+--     scss = {prettier},
+--     css = {prettier},
+--     markdown = {prettier},
+--     rust = {rustfmt},
+-- }
+
+-- local handle_lsp = function(opts) return opts end
+
+-- lspconfig.efm.setup {
+--     root_dir = lspconfig.util.root_pattern("yarn.lock", "lerna.json", ".git"),
+--     filetypes = vim.tbl_keys(languages),
+--     init_options = {documentFormatting = true, codeAction = true},
+--     settings = {languages = languages, log_level = 1, log_file = '~/efm.log'},
+--     on_attach = on_attach,
+--     capabilities = capabilities
+-- }
+
+-- lspconfig.eslint.setup(handle_lsp({
+--     root_dir = lspconfig.util.root_pattern("yarn.lock", "lerna.json", ".git"),
+--     on_attach = on_attach,
+--     capabilities = capabilities
+-- }))
 
 vim.fn.sign_define('DiagnosticSignError', { text = '', texthl = 'DiagnosticSignError' })
 vim.fn.sign_define('DiagnosticSignWarn', { text = '', texthl = 'DiagnosticSignWarn' })

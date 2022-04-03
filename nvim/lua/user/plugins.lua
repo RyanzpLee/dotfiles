@@ -12,7 +12,6 @@ packer.startup(function(use)
   use { 'tpope/vim-eunuch' } -- Adds :Rename, :SudoWrite
   use { 'tpope/vim-unimpaired' } -- Adds [b and other handy mappings
   use { 'tpope/vim-sleuth' } -- Indent autodetection with editorconfig support
-  use { 'williamboman/nvim-lsp-installer' }
   use {'kevinhwang91/nvim-bqf'}
 
   use {
@@ -158,6 +157,8 @@ packer.startup(function(use)
       'b0o/schemastore.nvim',
       'folke/lsp-colors.nvim',
       'weilbith/nvim-code-action-menu',
+      'jose-elias-alvarez/nvim-lsp-ts-utils',
+      'williamboman/nvim-lsp-installer'
     },
     config = function ()
       require('user.plugins.lspconfig')
@@ -194,16 +195,17 @@ packer.startup(function(use)
       require('user.plugins.cmp')
     end
   }
-   use {
-  'sbdchd/neoformat',
-    config = function()
-     require('user.plugins.neoformat')
-    end
-  }
-   -- use {
-   --    'prettier/vim-prettier',
-   --    run = 'yarn install --frozen-lockfile --production',
-   --  }
+  -- These aren't working well with monorepo right now so trying efm
+  -- use    {
+  --  'sbdchd/neoformat',
+  -- config = function()
+  -- require('user.plugins.neoformat')
+  --  end
+  -- }
+  -- use {
+  --    'prettier/vim-prettier',
+  --    run = 'yarn install --frozen-lockfile --production',
+  --  }
   -- Experimental
 
   use {
@@ -217,8 +219,8 @@ packer.startup(function(use)
       require('user.plugins.dashboard')
     end
   }
-
- use {
+-- not sure if this is pulling in the correct config files in monorepos
+  use {
     'mfussenegger/nvim-lint',
     config = function()
       require('user.plugins.nvim-lint')
