@@ -84,7 +84,6 @@ lsp_installer.on_server_ready(function(server)
         ['tsserver'] = function()
             default_opts = {
                 on_attach = function(client, bufnr)
-                    -- This makes sure tsserver is not used for formatting (I prefer prettier)
                     client.resolved_capabilities.document_formatting = false
                     local ts_utils = require 'nvim-lsp-ts-utils'
                     ts_utils.setup {}
