@@ -31,6 +31,20 @@ opt.redrawtime = 10000 -- Allow more time for loading syntax on large files
 opt.showmode = false
 opt.fillchars = "eob: "
 
+-- Tabs
+opt.autoindent = true
+opt.cindent = true
+opt.wrap = true
+
+opt.tabstop = 4
+opt.shiftwidth = 4
+opt.softtabstop = 4
+opt.expandtab = true
+
+opt.breakindent = true
+opt.showbreak = string.rep(" ", 3) -- Make it so that long lines wrap smartly
+opt.linebreak = true
+
 -- Helpful related items:
 --   1. :center, :left, :right
 --   2. gw{motion} - Put cursor back after formatting motion.
