@@ -1,32 +1,50 @@
-vim.o.expandtab = true
-vim.o.shiftwidth = 4
-vim.o.tabstop = 4
-vim.o.signcolumn = 'yes:2'
-vim.o.relativenumber = true
-vim.o.number = true
-vim.o.termguicolors = true
-vim.o.undofile = true
-vim.o.spell = true
-vim.o.title = true
-vim.o.ignorecase = true
-vim.o.smartcase = true
-vim.o.wildmode = 'longest:full,full'
-vim.o.wrap = false
-vim.o.list = true
-vim.o.listchars = 'tab:▸ ,trail:·'
-vim.o.mouse = 'a'
-vim.o.splitright = true
-vim.o.splitbelow = true
-vim.o.scrolloff = 8
-vim.o.sidescrolloff = 8
-vim.o.clipboard = 'unnamedplus' -- MacOS clipboard
-vim.o.confirm = true
-vim.o.backup = false
--- vim.o.undodir = '~/.vim/undodir'
-vim.o.undofile = true
-vim.o.updatetime = 250          -- Decrease CursorHold delay
-vim.o.redrawtime = 10000        -- Allow more time for loading syntax on large files
-vim.o.showmode = false
-vim.o.fillchars = 'eob: '
+local opt = vim.opt
 
+opt.expandtab = true
+opt.shiftwidth = 4
+opt.tabstop = 4
+opt.signcolumn = "yes:2"
+opt.relativenumber = true
+opt.number = true
+opt.termguicolors = true
+opt.undofile = true
+opt.spell = true
+opt.title = true
+opt.ignorecase = true
+opt.smartcase = true
+opt.wildmode = "longest:full,full"
+opt.wrap = false
+opt.list = true
+opt.listchars = "tab:▸ ,trail:·"
+opt.mouse = "a"
+opt.splitright = true
+opt.splitbelow = true
+opt.scrolloff = 8
+opt.sidescrolloff = 8
+opt.clipboard = "unnamedplus" -- MacOS clipboard
+opt.confirm = true
+opt.backup = false
+-- opt.undodir = '~/.vim/undodir'
+opt.undofile = true
+opt.updatetime = 250 -- Decrease CursorHold delay
+opt.redrawtime = 10000 -- Allow more time for loading syntax on large files
+opt.showmode = false
+opt.fillchars = "eob: "
 
+-- Helpful related items:
+--   1. :center, :left, :right
+--   2. gw{motion} - Put cursor back after formatting motion.
+--
+-- TODO: w, {v, b, l}
+opt.formatoptions = opt.formatoptions
+	- "a" -- Auto formatting is BAD.
+	- "t" -- Don't auto format my code. I got linters for that.
+	+ "c" -- In general, I like it when comments respect textwidth
+	+ "q" -- Allow formatting comments w/ gq
+	- "o" -- O and o, don't continue comments
+	+ "r" -- But do continue when pressing enter.
+	+ "n" -- Indent past the formatlistpat, not underneath it.
+	+ "j" -- Auto-remove comments if possible.
+	- "2" -- I'm not in gradeschool anymore
+-- set joinspaces
+opt.joinspaces = false -- Two spaces and grade school, we're done

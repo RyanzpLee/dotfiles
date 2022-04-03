@@ -195,9 +195,15 @@ packer.startup(function(use)
     end
   }
    use {
-      'prettier/vim-prettier',
-      run = 'yarn install --frozen-lockfile --production',
-    }
+  'sbdchd/neoformat',
+    config = function()
+     require('user.plugins.neoformat')
+    end
+  }
+   -- use {
+   --    'prettier/vim-prettier',
+   --    run = 'yarn install --frozen-lockfile --production',
+   --  }
   -- Experimental
 
   use {
@@ -212,7 +218,7 @@ packer.startup(function(use)
     end
   }
 
-  use {
+ use {
     'mfussenegger/nvim-lint',
     config = function()
       require('user.plugins.nvim-lint')
