@@ -196,18 +196,6 @@ packer.startup(function(use)
       require('user.plugins.cmp')
     end
   }
-  -- These aren't working well with monorepo right now so trying efm
-  -- use    {
-  --  'sbdchd/neoformat',
-  -- config = function()
-  -- require('user.plugins.neoformat')
-  --  end
-  -- }
-  -- use {
-  --    'prettier/vim-prettier',
-  --    run = 'yarn install --frozen-lockfile --production',
-  --  }
-  -- Experimental
 
   use {
     'luukvbaal/stabilize.nvim',
