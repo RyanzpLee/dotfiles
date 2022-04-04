@@ -14,7 +14,6 @@ zstyle ':omz:update' mode auto
 # Plugins {{{
 # ==============================================================================
     plugins=(
-        zsh-autocomplete
         nvm
         git
         colored-man-pages
@@ -22,6 +21,7 @@ zstyle ':omz:update' mode auto
         fzf
         zoxide
         autoupdate
+        zsh-autocomplete
     )
 
     source $ZSH/oh-my-zsh.sh
@@ -62,17 +62,15 @@ zstyle ':omz:update' mode auto
     alias sc="source ~/.zshrc"
     alias ec="v ~/.zshrc"
 
-    alias luamake=$HOME/lua-language-server/3rd/luamake/luamake
-
     # fzf settings
     [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
     export FZF_BASE="$HOME/.fzf"
     export FZF_TMUX=1
     export FZF_CTRL_T_OPTS="--preview 'bat --style=numbers --color=always --line-range :500 {}'"
     # Using ripgrep instead of default find
-    export FZF_CTRL_T_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*" --glob "!node_modules/*" --glob "!vendor/*" 2> /dev/null'
+    export FZF_DEFAULT_COMMAND='fd --color=never --hidden --no-ignore'
     # CTRL-T's command
-    export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+    export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND --type f"
     # ALT-C's command
     export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND --type d"
     bindkey "ç" fzf-cd-widget
