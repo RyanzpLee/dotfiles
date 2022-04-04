@@ -32,7 +32,7 @@ telescope.setup {
         ['<esc>'] = actions.close,
       },
     },
-    file_ignore_patterns = { '.git/' },
+    file_ignore_patterns = { 'dist', 'node_modules', '.git/' },
     vimgrep_arguments = {
       'rg',
       '--no-heading',
@@ -40,6 +40,7 @@ telescope.setup {
       '--line-number',
       '--column',
       '--smart-case',
+      '--hidden'
     },
   },
   pickers = {
@@ -65,7 +66,7 @@ telescope.setup {
       override_generic_sorter = true, -- override the generic sorter
       override_file_sorter = true, -- override the file sorter
       case_mode = 'smart_case', -- or "ignore_case" or "respect_case"
-      -- the default case_mode is "smart_case"
+      hidden = 'true'
     },
   },
 }

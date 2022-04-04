@@ -151,7 +151,9 @@ packer.startup(function(use)
       require('gitsigns').setup { sign_priority = 20 }
     end,
   }
-
+  -- use {
+  --  'creativenull/efmls-configs-nvim',
+  -- }
   use {
     'neovim/nvim-lspconfig',
     requires = {
@@ -203,16 +205,9 @@ packer.startup(function(use)
   }
 
   use {
-    'glepnir/dashboard-nvim',
+    'mfussenegger/nvim-lint',
     config = function()
-      require('user.plugins.dashboard')
+      require('user.plugins.nvim-lint')
     end
   }
--- not sure if this is pulling in the correct config files in monorepos
-  -- use {
-  --   'mfussenegger/nvim-lint',
-  --   config = function()
-  --     require('user.plugins.nvim-lint')
-  --   end
-  -- }
 end)

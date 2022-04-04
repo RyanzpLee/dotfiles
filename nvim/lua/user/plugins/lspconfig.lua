@@ -23,7 +23,7 @@ vim.diagnostic.config {
 }
 
 local on_attach = function(_, bufnr)
-    buf_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+    -- buf_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
     buf_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>')
     buf_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>')
@@ -98,7 +98,7 @@ lsp_installer.on_server_ready(function(server)
             }
         end,
 
-        ['efm'] = function()
+        ['efmls'] = function()
             default_opts = {
                 root_dir = vim.loop.cwd,
                 init_options = {
@@ -133,129 +133,6 @@ lsp_installer.on_server_ready(function(server)
     server:setup(server_options)
 end)
 
--- lspconfig.bashls.setup{
---   on_attach = on_attach,
---   capabilities = capabilities,
---   flags = {
---     debounce_text_changes = 150,
---   },
--- }
-
--- lspconfig.emmet_ls.setup{
---   on_attach = on_attach,
---   capabilities = capabilities,
---   root_dir = vim.loop.cwd,
---   flags = {
---     debounce_text_changes = 150,
---   },
--- }
-
--- lspconfig.html.setup{
---   on_attach = on_attach,
---   capabilities = capabilities,
---   root_dir = vim.loop.cwd,
---   flags = {
---     debounce_text_changes = 150,
---   },
--- }
-
--- lspconfig.eslint.setup{
---   on_attach = on_attach,
---   capabilities = capabilities,
---   root_dir = vim.loop.cwd,
---   flags = {
---     debounce_text_changes = 150,
---   },
---   handlers = {
---     ['window/showMessageRequest'] = function(_, result, _) return result end,
---   },
--- }
-
--- lspconfig.jsonls.setup{
---   on_attach = on_attach,
---   capabilities = capabilities,
---   root_dir = vim.loop.cwd,
---   flags = {
---     debounce_text_changes = 150,
---   },
---   settings = {
---     json = {
---       schemas = require('schemastore').json.schemas()
---     }
---   }
--- }
--- lspconfig.tsserver.setup{
---   on_attach = on_attach,
---   capabilities = capabilities,
---   root_dir = vim.loop.cwd,
---   flags = {
---     debounce_text_changes = 150,
---   },
--- }
--- local sumneko_binary_path = vim.fn.exepath('lua-language-server')
--- local sumneko_root_path = vim.fn.fnamemodify(sumneko_binary_path, ':h:h:h')
-
--- local runtime_path = vim.split(package.path, ';')
--- table.insert(runtime_path, "lua/?.lua")
--- table.insert(runtime_path, "lua/?/init.lua")
-
--- lspconfig.sumneko_lua.setup {
---     cmd = {sumneko_binary_path, "-E", sumneko_root_path .. "/main.lua"};
---     settings = {
---         Lua = {
---         runtime = {
---             -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
---             version = 'LuaJIT',
---             -- Setup your lua path
---             path = runtime_path,
---         },
---         diagnostics = {
---             -- Get the language server to recognize the `vim` global
---             globals = {'vim'},
---         },
---         workspace = {
---             -- Make the server aware of Neovim runtime files
---             library = vim.api.nvim_get_runtime_file("", true),
---         },
---         -- Do not send telemetry data containing a randomized but unique identifier
---         telemetry = {
---             enable = false,
---         },
---         },
---     },
--- }
-
--- local languages = {
---     lua = {luafmt},
---     typescript = {prettier, eslint},
---     javascript = {prettier, eslint},
---     typescriptreact = {prettier, eslint},
---     javascriptreact = {prettier, eslint},
---     yaml = {prettier},
---     json = {prettier},
---     html = {prettier},
---     scss = {prettier},
---     css = {prettier},
---     markdown = {prettier},
---     rust = {rustfmt},
--- }
-
--- local handle_lsp = function(opts) return opts end
-
--- lspconfig.efm.setup {
---     root_dir = lspconfig.util.root_pattern("yarn.lock", "lerna.json", ".git"),
---     filetypes = vim.tbl_keys(languages),
---     init_options = {documentFormatting = true, codeAction = true},
---     settings = {languages = languages, log_level = 1, log_file = '~/efm.log'},
---     on_attach = on_attach,
---     capabilities = capabilities
--- }
-
--- lspconfig.eslint.setup(handle_lsp({
---     root_dir = lspconfig.util.root_pattern("yarn.lock", "lerna.json", ".git"),
---     on_attach = on_attach,
---     capabilities = capabilities
--- }))
 
 vim.fn.sign_define('DiagnosticSignError', {
     text = '',

@@ -30,16 +30,6 @@ keymap("v", "Y", "myY`y")
 keymap("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
 keymap("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
 
--- Easy insertion of a trailing ; or , from insert mode
-keymap("i", ";;", "<Esc>A;<Esc>")
-keymap("i", ",,", "<Esc>A,<Esc>")
-
--- Open the current file in the default program (on Mac I think this is just `open`)
-keymap("n", "<leader>x", ":!open %<cr><cr>")
-
--- Disable annoying command line thing
-keymap("n", "q:", ":q<CR>")
-
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize +2<CR>")
 keymap("n", "<C-Down>", ":resize -2<CR>")
