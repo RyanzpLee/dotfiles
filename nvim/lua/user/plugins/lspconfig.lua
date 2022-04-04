@@ -98,9 +98,9 @@ lsp_installer.on_server_ready(function(server)
             }
         end,
 
-        ['efmls'] = function()
+        ['efm'] = function()
             default_opts = {
-                root_dir = vim.loop.cwd,
+                filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact'},
                 init_options = {
                     documentFormatting = true
                 },
@@ -121,9 +121,9 @@ lsp_installer.on_server_ready(function(server)
                         markdown = {prettier},
                     }
                 },
-                on_attach = function(client)
+                on_attach = function(client, bufnr)
                     client.resolved_capabilities.document_formatting = true
-                    on_attach(client)
+                    on_attach(client, bufnr)
                 end
             }
         end
