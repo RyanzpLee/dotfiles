@@ -155,9 +155,9 @@ packer.startup(function(use)
   use {
     'neoclide/coc.nvim',
     branch = 'release',
-    config = function()
-      require('user.plugins.coc')
-    end
+    -- config = function()
+    --   require('user.plugins.coc')
+    -- end
   }
 
   use {

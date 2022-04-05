@@ -45,7 +45,7 @@ telescope.setup {
   },
   pickers = {
     find_files = {
-      hidden = true,
+      find_command = { 'rg', '--files', '--iglob', '!.git', '--hidden' }
     },
     buffers = {
       previewer = false,
@@ -55,9 +55,6 @@ telescope.setup {
     },
     oldfiles = {
       prompt_title = 'History',
-    },
-    lsp_references = {
-      previewer = false,
     },
   },
   extensions = {
