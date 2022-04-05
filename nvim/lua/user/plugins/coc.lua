@@ -344,13 +344,13 @@ function M.initialize()
     cmd([[
         aug Coc
             au!
-            au User CocLocationsChange ++nested lua require('plugs.coc').jump2loc()
-            au User CocDiagnosticChange ++nested lua require('plugs.coc').diagnostic_change()
-            au CursorHold * sil! call CocActionAsync('highlight', '', v:lua.require('plugs.coc').hl_fallback)
+            au User CocLocationsChange ++nested lua require('user.plugins.coc').jump2loc()
+            au User CocDiagnosticChange ++nested lua require('user.plugins.coc').diagnostic_change()
+            au CursorHold * sil! call CocActionAsync('highlight', '', v:lua.require('user.plugins.coc').hl_fallback)
             au User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
             au VimLeavePre * if get(g:, 'coc_process_pid', 0) | call system('kill -9 -- -' . g:coc_process_pid) | endif
             au FileType list lua vim.cmd('pa nvim-bqf') require('bqf.magicwin.handler').attach()
-            au User CocOpenFloat lua require('plugs.coc').post_open_float()
+            au User CocOpenFloat lua require('user.plugins.coc').post_open_float()
         aug END
 
         hi link CocSemVariable TSVariable
@@ -371,15 +371,15 @@ function M.initialize()
     end
 
     keymap('i', '<C-space>', 'coc#refresh()' )
-    -- keymap('n', '<C-f>', [[v:lua.require'plugs.coc'.scroll(v:true)]])
-    -- keymap('n', '<C-b>', [[v:lua.require'plugs.coc'.scroll(v:false)]])
-    -- keymap('s', '<C-f>', [[v:lua.require'plugs.coc'.scroll(v:true)]])
-    -- keymap('s', '<C-b>', [[v:lua.require'plugs.coc'.scroll(v:false)]])
-    -- keymap('i', '<C-f>', [[v:lua.require'plugs.coc'.scroll_insert(v:true)]])
-    -- keymap('i', '<C-b>', [[v:lua.require'plugs.coc'.scroll_insert(v:false)]])
+    -- keymap('n', '<C-f>', [[v:lua.require'user.plugins.coc'.scroll(v:true)]])
+    -- keymap('n', '<C-b>', [[v:lua.require'user.plugins.coc'.scroll(v:false)]])
+    -- keymap('s', '<C-f>', [[v:lua.require'user.plugins.coc'.scroll(v:true)]])
+    -- keymap('s', '<C-b>', [[v:lua.require'user.plugins.coc'.scroll(v:false)]])
+    -- keymap('i', '<C-f>', [[v:lua.require'user.plugins.coc'.scroll_insert(v:true)]])
+    -- keymap('i', '<C-b>', [[v:lua.require'user.plugins.coc'.scroll_insert(v:false)]])
 
     keymap('i', '<C-]>', [[!get(b:, 'coc_snippet_active') ? "\<C-]>" : "\<C-j>"]], {expr = true})
-    keymap('s', '<C-]>', [[v:lua.require'plugs.coc'.skip_snippet()]] )
+    keymap('s', '<C-]>', [[v:lua.require'user.plugins.coc'.skip_snippet()]] )
     keymap('s', '<Bs>', '<C-g>"_c')
     keymap('s', '<Del>', '<C-g>"_c')
     keymap('s', '<C-h>', '<C-g>"_c')
@@ -387,32 +387,34 @@ function M.initialize()
     keymap('s', '<C-o>', '<Nop>')
     keymap('s', '<C-o>o', '<Esc>a<C-o>o')
 
-    keymap('n', '[d', '<Plug>(coc-diagnostic-prev)', {})
-    keymap('n', ']d', '<Plug>(coc-diagnostic-next)', {})
+    keymap('n', '[d', '<Plug>(coc-diagnostic-prev)')
+    keymap('n', ']d', '<Plug>(coc-diagnostic-next)')
 
-    keymap('n', 'gd', [[<Cmd>lua require('plugs.coc').go2def()<CR>]])
+    -- keymap('n', 'gd', [[<Cmd>lua require('user.plugins.coc').go2def()<CR>]])
+    keymap('n', 'gd', '<Plug>(coc-definition)')
     keymap('n', 'gy', [[<Cmd>call CocActionAsync('jumpTypeDefinition', 'drop')<CR>]])
     keymap('n', 'gi', [[<Cmd>call CocActionAsync('jumpImplementation', 'drop')<CR>]])
-    keymap('n', 'gr', [[<Cmd>call CocActionAsync('jumpUsed', 'drop')<CR>]])
 
-    keymap('n', 'K', [[<Cmd>lua require('plugs.coc').show_documentation()<CR>]])
+    keymap('n', 'gr', '<Plug>(coc-references)')
+    keymap('n', 'gi', '<Plug>(coc-implementation)')
+    keymap('n', 'K', [[<Cmd>lua require('user.plugins.coc').show_documentation()<CR>]])
 
-    keymap('n', '<Leader>rn', [[<Cmd>lua require('plugs.coc').rename()<CR>]])
+    keymap('n', '<Leader>rn', [[<Cmd>lua require('user.plugins.coc').rename()<CR>]])
 
-    keymap('n', '<Leader>ac', [[<Cmd>lua require('plugs.coc').code_action('')<CR>]])
-    keymap('n', '<M-CR>', [[<Cmd>lua require('plugs.coc').code_action({'cursor', 'line'})<CR>]])
-    keymap('x', '<M-CR>', [[:<C-u>lua require('plugs.coc').code_action(vim.fn.visualmode())<CR>]])
+    keymap('n', '<Leader>ca', [[<Cmd>lua require('user.plugins.coc').code_action('')<CR>]])
+    keymap('n', '<M-CR>', [[<Cmd>lua require('user.plugins.coc').code_action({'cursor', 'line'})<CR>]])
+    keymap('x', '<M-CR>', [[:<C-u>lua require('user.plugins.coc').code_action(vim.fn.visualmode())<CR>]])
 
     keymap('n', '<Leader>al', '<Plug>(coc-codelens-action)', {silent = true})
 
     keymap('x', '<Leader>s', '<Plug>(coc-snippets-select)', {})
     keymap('n', '<Leader>so', '<Cmd>CocCommand snippets.openSnippetFiles<CR>')
 
-    keymap('n', '<Leader>qi', [[<Cmd>lua require('plugs.coc').organize_import()<CR>]])
+    keymap('n', '<Leader>qi', [[<Cmd>lua require('user.plugins.coc').organize_import()<CR>]])
     keymap('n', '<M-q>', [[<Cmd>lua vim.notify(vim.fn.CocAction('getCurrentFunctionSymbol'))<CR>]])
-    keymap('n', '<Leader>qd', [[<Cmd>lua require('plugs.coc').diagnostic()<CR>]])
+    keymap('n', '<Leader>qd', [[<Cmd>lua require('user.plugins.coc').diagnostic()<CR>]])
 
-    keymap('i', '<C-l>', [[v:lua.require'plugs.coc'.accept_complete()]] )
+    keymap('i', '<C-l>', [[v:lua.require'user.plugins.coc'.accept_complete()]] )
 
     cmd([[com! -nargs=0 DiagnosticToggleBuffer call CocAction('diagnosticToggleBuffer')]])
     cmd([[com! -nargs=0 CocOutput CocCommand workspace.showOutput]])
