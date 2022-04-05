@@ -25,6 +25,7 @@ telescope.setup {
     selection_caret = '  ',
     layout_config = {
       prompt_position = 'top',
+      preview_cutoff = 10,
     },
     sorting_strategy = 'ascending',
     mappings = {

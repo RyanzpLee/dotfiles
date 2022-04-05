@@ -31,10 +31,10 @@ keymap("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
 keymap("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
 
 -- Resize with arrows
-keymap("n", "<C-Up>", ":resize +2<CR>")
-keymap("n", "<C-Down>", ":resize -2<CR>")
-keymap("n", "<C-Left>", ":vertical resize -2<CR>")
-keymap("n", "<C-Right>", ":vertical resize +2<CR>")
+keymap("n", "<A-Up>", ":resize +2<CR>")
+keymap("n", "<A-Down>", ":resize -2<CR>")
+keymap("n", "<A-Left>", ":vertical resize -2<CR>")
+keymap("n", "<A-Right>", ":vertical resize +2<CR>")
 
 -- Move text up and down
 keymap("n", "<A-j>", ":m .+1<CR>==")
