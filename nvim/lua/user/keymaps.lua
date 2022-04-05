@@ -12,7 +12,7 @@ keymap("n", "<C-q>", "<cmd>lua require'lib.utils'.toggle_qf('q')<CR>")
 keymap("n", "<leader>Q", "<cmd>lua require'lib.utils'.toggle_qf('l')<CR>")
 
 -- Turn off incremental search highlighting
-keymap("n", "<leader>k", ":nohlsearch<CR>")
+keymap("n", "<leader><CR>", ":nohlsearch<CR>")
 
 -- Allow gf to open non-existent files
 keymap("", "gf", ":edit <cfile><CR>")

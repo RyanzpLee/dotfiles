@@ -1,0 +1,9 @@
+{
+  "coc.preferences.formatOnSaveFiletypes": [
+    "javascript",
+    "typescript",
+    "yaml",
+    "graphql"
+  ],
+  "Lua.telemetry.enable": true
+}

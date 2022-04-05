@@ -30,7 +30,9 @@ opt.updatetime = 250 -- Decrease CursorHold delay
 opt.redrawtime = 10000 -- Allow more time for loading syntax on large files
 opt.showmode = false
 opt.fillchars = "eob: "
-
+opt.hidden = true
+opt.cmdheight = 2
+opt.shortmess:append('c') 
 -- Tabs
 opt.autoindent = true
 opt.cindent = true

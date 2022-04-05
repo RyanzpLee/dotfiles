@@ -151,20 +151,12 @@ packer.startup(function(use)
       require('gitsigns').setup { sign_priority = 20 }
     end,
   }
-  -- use {
-  --  'creativenull/efmls-configs-nvim',
-  -- }
+
   use {
-    'neovim/nvim-lspconfig',
-    requires = {
-      'b0o/schemastore.nvim',
-      'folke/lsp-colors.nvim',
-      'weilbith/nvim-code-action-menu',
-      'jose-elias-alvarez/nvim-lsp-ts-utils',
-      'williamboman/nvim-lsp-installer'
-    },
-    config = function ()
-      require('user.plugins.lspconfig')
+    'neoclide/coc.nvim',
+    branch = 'release',
+    config = function()
+      require('user.plugins.coc')
     end
   }
 

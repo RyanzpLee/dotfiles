@@ -16,6 +16,7 @@ zstyle ':omz:update' mode auto
     plugins=(
         nvm
         git
+        pip
         colored-man-pages
         zsh-autosuggestions
         fzf
