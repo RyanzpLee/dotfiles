@@ -12,7 +12,7 @@ keymap("n", "<C-q>", "<cmd>lua require'lib.utils'.toggle_qf('q')<CR>")
 keymap("n", "<leader>Q", "<cmd>lua require'lib.utils'.toggle_qf('l')<CR>")
 
 -- Turn off incremental search highlighting
-keymap("n", "<leader><CR>", ":nohlsearch<CR>")
+-- use unimpared 'yoh'
 
 -- Allow gf to open non-existent files
 keymap("", "gf", ":edit <cfile><CR>")
@@ -26,15 +26,22 @@ keymap("v", ">", ">gv")
 keymap("v", "y", "myy`hay")
 keymap("v", "Y", "myY`y")
 
+-- Delete and Paste without yanking to register sends to the abyss with "_
+keymap("x", "<Leader>p", '"_dP')
+
+-- Start the delete without yank but allow for any motion
+keymap("n", "<Leader>d", '"_d')
+keymap("v", "<Leader>d", '"_d')
+
 -- When text is wrapped, move by terminal rows, not lines, unless a count is provided
 keymap("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
 keymap("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
 
 -- Resize with arrows
-keymap("n", "<A-Up>", ":resize +2<CR>")
-keymap("n", "<A-Down>", ":resize -2<CR>")
-keymap("n", "<A-Left>", ":vertical resize -2<CR>")
-keymap("n", "<A-Right>", ":vertical resize +2<CR>")
+keymap("n", "<A-Up>", ":resize -2<CR>")
+keymap("n", "<A-Down>", ":resize +2<CR>")
+keymap("n", "<A-Left>", ":vertical resize +2<CR>")
+keymap("n", "<A-Right>", ":vertical resize -2<CR>")
 
 -- Move text up and down
 keymap("n", "<A-j>", ":m .+1<CR>==")

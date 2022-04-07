@@ -1,4 +1,5 @@
 {
   "coc.preferences.formatOnSaveFiletypes": ["*"],
-  "Lua.telemetry.enable": true
+  "Lua.telemetry.enable": true,
+  "sumneko-lua.enableNvimLuaDev": true
 }
