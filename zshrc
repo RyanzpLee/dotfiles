@@ -124,7 +124,7 @@ zstyle ':omz:update' mode auto
         git checkout $commitHash
     }
     
-    alias gh='fzf-git-commit-hash'
+    # alias gh='fzf-git-commit-hash'
     alias gch='fzf-git-checkout-commit-hash'
     alias gco='fzf-git-checkout'
 
@@ -132,6 +132,7 @@ zstyle ':omz:update' mode auto
 
 # vim: set nospell foldmethod=marker foldlevel=0:
 
+export NVM_DIR="$HOME/.nvm"
 
 # Must source at very end of file
 source ~/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

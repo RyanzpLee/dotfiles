@@ -45,7 +45,7 @@ telescope.setup {
   },
   pickers = {
     find_files = {
-      hidden = true,
+      find_command = { 'rg', '--files', '--iglob', '!.git', '--hidden' }
     },
     buffers = {
       previewer = false,

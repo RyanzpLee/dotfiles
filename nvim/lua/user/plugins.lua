@@ -151,9 +151,6 @@ packer.startup(function(use)
       require('gitsigns').setup { sign_priority = 20 }
     end,
   }
-  -- use {
-  --  'creativenull/efmls-configs-nvim',
-  -- }
   use {
     'neovim/nvim-lspconfig',
     requires = {
@@ -204,10 +201,10 @@ packer.startup(function(use)
     config = function() require('stabilize').setup() end
   }
 
-  use {
-    'mfussenegger/nvim-lint',
-    config = function()
-      require('user.plugins.nvim-lint')
-    end
-  }
+  -- use {
+  --   'mfussenegger/nvim-lint',
+  --   config = function()
+  --     require('user.plugins.nvim-lint')
+  --   end
+  -- }
 end)
