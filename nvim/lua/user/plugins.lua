@@ -161,7 +161,7 @@ packer.startup(function(use)
       'williamboman/nvim-lsp-installer'
     },
     config = function ()
-      require('user.plugins.lspconfig')
+      require('user.plugins.lsp')
     end
   }
 
