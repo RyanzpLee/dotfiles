@@ -1,3 +1,6 @@
 tmux
+<<<<<<< Updated upstream
 nvim/plugin/packer_compiled.lua
+=======
+>>>>>>> Stashed changes
 **/packer_compiled.lua
