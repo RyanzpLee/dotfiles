@@ -25,11 +25,11 @@ M.setup = function ()
     severity_sort = true,
     float = {
       focusable = false,
-      style = 'minimal',
-      border = 'rounder',
+      -- style = 'minimal',
+      border = 'rounded',
       source = 'always',
-      header = '',
-      prefix = '',
+      -- header = '',
+      -- prefix = '',
     }
   }
   vim.diagnostic.config(config)

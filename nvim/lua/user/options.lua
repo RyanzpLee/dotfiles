@@ -8,6 +8,7 @@ opt.signcolumn = "yes:2"
 opt.relativenumber = true
 opt.number = true
 opt.termguicolors = true
+opt.hlsearch = false
 opt.undofile = true
 opt.spell = true
 opt.title = true
@@ -33,15 +34,14 @@ opt.showmode = false
 opt.fillchars = "eob: "
 opt.hidden = true
 opt.cmdheight = 2
-opt.shortmess:append('c') 
+opt.shortmess:append('c')
 -- Tabs
 opt.autoindent = true
-opt.cindent = true
-opt.wrap = true
+-- opt.cindent = true
 
-opt.breakindent = true
-opt.showbreak = string.rep(" ", 3) -- Make it so that long lines wrap smartly
-opt.linebreak = true
+-- opt.breakindent = true
+-- opt.showbreak = string.rep(" ", 3) -- Make it so that long lines wrap smartly
+-- opt.linebreak = true
 
 -- Helpful related items:
 --   1. :center, :left, :right

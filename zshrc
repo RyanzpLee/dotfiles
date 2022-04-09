@@ -133,6 +133,7 @@ zstyle ':omz:update' mode auto
 # vim: set nospell foldmethod=marker foldlevel=0:
 
 export NVM_DIR="$HOME/.nvm"
+export PATH=$PATH:/usr/local/go/bin
 
 # Must source at very end of file
 source ~/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

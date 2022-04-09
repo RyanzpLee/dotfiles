@@ -65,7 +65,8 @@ packer.startup(function(use)
   use {
     'windwp/nvim-autopairs',
     config = function()
-      require('nvim-autopairs').setup()
+      -- require('nvim-autopairs').setup()
+      require('user.plugins.autopairs')
     end
   }
 
@@ -148,9 +149,11 @@ packer.startup(function(use)
     'lewis6991/gitsigns.nvim',
     requires = 'nvim-lua/plenary.nvim',
     config = function()
-      require('gitsigns').setup { sign_priority = 20 }
+      -- require('gitsigns').setup { sign_priority = 20 }
+      require('user.plugins.gitsigns')
     end,
   }
+
   use {
     'neovim/nvim-lspconfig',
     requires = {
@@ -158,10 +161,16 @@ packer.startup(function(use)
       'folke/lsp-colors.nvim',
       'weilbith/nvim-code-action-menu',
       'jose-elias-alvarez/nvim-lsp-ts-utils',
-      'williamboman/nvim-lsp-installer'
+      'williamboman/nvim-lsp-installer',
     },
     config = function ()
       require('user.plugins.lsp')
+    end
+  }
+  use {
+    'jose-elias-alvarez/null-ls.nvim',
+    config = function ()
+      require('user.plugins.lsp.null-ls')
     end
   }
 
