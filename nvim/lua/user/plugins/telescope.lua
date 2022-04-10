@@ -56,9 +56,6 @@ telescope.setup {
     oldfiles = {
       prompt_title = 'History',
     },
-    lsp_references = {
-      previewer = false,
-    },
   },
   extensions = {
     fzf = {
