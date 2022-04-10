@@ -72,13 +72,29 @@ _G.load_config = function()
   end
   if not nvim_lsp[name].document_config.default_config.cmd and not cmd then
     print [[You have not defined a server default cmd for a server
-      that requires it please edit minimal_init.lua]]
+    that requires it please edit minimal_init.lua]]
   end
 
-  nvim_lsp[name].setup {
+  local util = require 'lspconfig.util'
+
+  -- root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git")
+
+  nvim_lsp.tsserver.setup{
+	root_dir = util.root_pattern("yarn.lock", "lerna.json", ".git"),
     cmd = cmd,
     on_attach = on_attach,
   }
+
+
+  -- nvim_lsp.tsserver.setup{
+  --   -- root_dir = util.find_node_modules_ancestor(),
+  --   -- root_dir = util.find_json_ancestor(),
+  --   -- root_dir = util.find_git_ancestor(),
+  --   root_dir = util.root_pattern('.git'),
+  --   cmd = cmd,
+  --   on_attach = on_attach,
+  -- }
+
 
   print [[You can find your log at $HOME/.cache/nvim/lsp.log. Please paste in a github issue under a details tag as described in the issue template.]]
 end
