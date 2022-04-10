@@ -8,6 +8,7 @@ lsp_installer.on_server_ready(function(server)
   local opts = {
     on_attach = require('user.plugins.lsp.handlers').on_attach,
     capabilities = require('user.plugins.lsp.handlers').capabilities,
+    autostart = true,
   }
 
   if server.name == 'jsonls' then

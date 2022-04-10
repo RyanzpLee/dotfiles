@@ -134,6 +134,7 @@ zstyle ':omz:update' mode auto
 
 export NVM_DIR="$HOME/.nvm"
 export PATH=$PATH:/usr/local/go/bin
+export PATH="/usr/local/opt/python@3.10/bin:$PATH"
 
 # Must source at very end of file
 source ~/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
