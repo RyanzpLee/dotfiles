@@ -1,219 +1,95 @@
-local packer = require 'lib.packer-init'
+local on_windows = vim.loop.os_uname().version:match 'Windows'
 
-packer.startup(function(use)
-  use { 'wbthomason/packer.nvim' } -- Let packer manage itself
+local function join_paths(...)
+  local path_sep = on_windows and '\\' or '/'
+  local result = table.concat({ ... }, path_sep)
+  return result
+end
 
-  use { 'airblade/vim-rooter' }
-  use { 'christoomey/vim-tmux-navigator' }
-  use { 'farmergreg/vim-lastplace' }
-  use { 'tpope/vim-commentary' }
-  use { 'tpope/vim-repeat' }
-  use { 'tpope/vim-surround' }
-  use { 'tpope/vim-eunuch' } -- Adds :Rename, :SudoWrite
-  use { 'tpope/vim-unimpaired' } -- Adds [b and other handy mappings
-  use { 'tpope/vim-sleuth' } -- Indent autodetection with editorconfig support
-  use {'kevinhwang91/nvim-bqf'}
+vim.cmd [[set runtimepath=$VIMRUNTIME]]
 
-  use {
-    'dracula/vim',
-    as = 'dracula',
-    config = function()
-      require('user.plugins.dracula')
-    end
-  }
+local temp_dir = vim.loop.os_getenv 'TEMP' or '/tmp'
 
-  use {
-    'tommcdo/vim-lion',
-    config = function()
-      require('user.plugins.lion')
-    end
-  }
+vim.cmd('set packpath=' .. join_paths(temp_dir, 'nvim', 'site'))
 
-  use {
-    'whatyouhide/vim-textobj-xmlattr',
-    requires = 'kana/vim-textobj-user'
-  }
+local package_root = join_paths(temp_dir, 'nvim', 'site', 'pack')
+local install_path = join_paths(package_root, 'packer', 'start', 'packer.nvim')
+local compile_path = join_paths(install_path, 'plugin', 'packer_compiled.lua')
 
-  use {
-    'sickill/vim-pasta',
-    config = function()
-      require('user.plugins.pasta')
-    end
-  }
-
-  use {
-    'mhinz/vim-sayonara',
-    config = function()
-      require('user.plugins.sayonara')
-    end
-  }
-
-  use {
-    'lukas-reineke/indent-blankline.nvim',
-    config = function()
-      require('user.plugins.indent-blankline')
-    end
-  }
-
-  use {
-    'AndrewRadev/splitjoin.vim',
-    config = function()
-      require('user.plugins.splitjoin')
-    end
-  }
-
-  use {
-    'windwp/nvim-autopairs',
-    config = function()
-      -- require('nvim-autopairs').setup()
-      require('user.plugins.autopairs')
-    end
-  }
-
-  use {
-    'akinsho/bufferline.nvim',
-    requires = 'kyazdani42/nvim-web-devicons',
-    config = function()
-      require('user.plugins.bufferline')
-    end
-  }
-
-  use {
-    'nvim-lualine/lualine.nvim',
-    requires = 'kyazdani42/nvim-web-devicons',
-    config = function()
-      require('user.plugins.lualine')
-    end
-  }
-
-  use {
-    'kyazdani42/nvim-tree.lua',
-    requires = 'kyazdani42/nvim-web-devicons',
-    config = function()
-      require('user.plugins.nvim-tree')
-    end
-  }
-
-  use {
-    'karb94/neoscroll.nvim',
-    config = function()
-      require('user.plugins.neoscroll')
-    end
-  }
-
-  use {
-    'voldikss/vim-floaterm',
-    config = function()
-      require('user.plugins.floaterm')
-    end
-  }
-
-  use {
-    'nvim-telescope/telescope.nvim',
-    requires = {
-      { 'nvim-lua/plenary.nvim' },
-      { 'kyazdani42/nvim-web-devicons' },
-      { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
-      { 'nvim-telescope/telescope-live-grep-raw.nvim' },
+local function load_plugins()
+  require('packer').startup {
+    {
+      'wbthomason/packer.nvim',
+      'neovim/nvim-lspconfig',
     },
-    config = function()
-      require('user.plugins.telescope')
-    end
-  }
-
-  use {
-    'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate',
-    requires = {
-      'nvim-treesitter/playground',
-      'nvim-treesitter/nvim-treesitter-textobjects',
-      'lewis6991/spellsitter.nvim',
-      'JoosepAlviste/nvim-ts-context-commentstring',
-      'p00f/nvim-ts-rainbow'
+    config = {
+      package_root = package_root,
+      compile_path = compile_path,
     },
-    config = function()
-      require('user.plugins.treesitter')
-      require('spellsitter').setup()
+  }
+end
+
+_G.load_config = function()
+  vim.lsp.set_log_level 'trace'
+  if vim.fn.has 'nvim-0.5.1' == 1 then
+    require('vim.lsp.log').set_format_func(vim.inspect)
+  end
+  local nvim_lsp = require 'lspconfig'
+  local on_attach = function(_, bufnr)
+    local function buf_set_keymap(...)
+      vim.api.nvim_buf_set_keymap(bufnr, ...)
     end
-  }
-
-  use {
-    'tpope/vim-fugitive',
-    requires = 'tpope/vim-rhubarb',
-    config = function ()
-      require('user.plugins.fugitive')
+    local function buf_set_option(...)
+      vim.api.nvim_buf_set_option(bufnr, ...)
     end
+
+    buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+    -- Mappings.
+    local opts = { noremap = true, silent = true }
+    buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+    buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+    buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+    buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+    buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+    buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+    buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+    buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+    buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+    buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+    buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+    buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+    buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+    buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+    buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+  end
+
+  -- Add the server that troubles you here
+  local name = 'tsserver'
+ -- local cmd = { 'pyright-langserver', '--stdio' } -- needed for elixirls, omnisharp, sumneko_lua
+  if not name then
+    print 'You have not defined a server name, please edit minimal_init.lua'
+  end
+  if not nvim_lsp[name].document_config.default_config.cmd and not cmd then
+    print [[You have not defined a server default cmd for a server
+      that requires it please edit minimal_init.lua]]
+  end
+
+  nvim_lsp[name].setup {
+    cmd = cmd,
+    on_attach = on_attach,
   }
 
-  use {
-    'lewis6991/gitsigns.nvim',
-    requires = 'nvim-lua/plenary.nvim',
-    config = function()
-      -- require('gitsigns').setup { sign_priority = 20 }
-      require('user.plugins.gitsigns')
-    end,
-  }
+  print [[You can find your log at $HOME/.cache/nvim/lsp.log. Please paste in a github issue under a details tag as described in the issue template.]]
+end
 
-  use {
-    'neovim/nvim-lspconfig',
-    requires = {
-      'b0o/schemastore.nvim',
-      'folke/lsp-colors.nvim',
-      'weilbith/nvim-code-action-menu',
-      'jose-elias-alvarez/nvim-lsp-ts-utils',
-      'williamboman/nvim-lsp-installer',
-    },
-    config = function ()
-      require('user.plugins.lsp')
-    end
-  }
-  use {
-    'jose-elias-alvarez/null-ls.nvim',
-    config = function ()
-      require('user.plugins.lsp.null-ls')
-    end
-  }
-
-  use {
-    'j-hui/fidget.nvim',
-    config = function()
-      require('fidget').setup{}
-    end,
-  }
-
-  use {
-    'L3MON4D3/LuaSnip',
-    config = function()
-      require('user.plugins.luasnip')
-    end
-  }
-
-  use {
-    'hrsh7th/nvim-cmp',
-    requires = {
-      'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-buffer',
-      'saadparwaiz1/cmp_luasnip',
-      'L3MON4D3/LuaSnip',
-      'hrsh7th/cmp-path',
-      'hrsh7th/cmp-nvim-lua',
-      'onsails/lspkind-nvim',
-      'hrsh7th/cmp-nvim-lsp-signature-help',
-    },
-    config = function()
-      require('user.plugins.cmp')
-    end
-  }
-
-  use {
-    'luukvbaal/stabilize.nvim',
-    config = function() require('stabilize').setup() end
-  }
-
-  -- use {
-  --   'mfussenegger/nvim-lint',
-  --   config = function()
-  --     require('user.plugins.nvim-lint')
-  --   end
-  -- }
-end)
+if vim.fn.isdirectory(install_path) == 0 then
+  vim.fn.system { 'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path }
+  load_plugins()
+  require('packer').sync()
+  vim.cmd [[autocmd User PackerComplete ++once lua load_config()]]
+else
+  load_plugins()
+  require('packer').sync()
+  _G.load_config()
+end
