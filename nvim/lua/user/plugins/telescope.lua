@@ -21,7 +21,7 @@ local keymap = require 'lib.utils'.keymap
 
 telescope.setup {
   defaults = {
-    path_display = { truncate = 1 },
+    path_display = { smart_case },
     prompt_prefix = '   ',
     selection_caret = '  ',
     layout_config = {
@@ -42,7 +42,8 @@ telescope.setup {
       '--line-number',
       '--column',
       '--smart-case',
-      '--hidden'
+      '--hidden',
+      '--trim',
     },
   },
   pickers = {

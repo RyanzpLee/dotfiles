@@ -32,7 +32,7 @@ opt.showmode = false
 opt.fillchars = "eob: "
 opt.hidden = true
 opt.cmdheight = 2
-opt.shortmess:append('c') 
+opt.shortmess:append('c')
 -- Tabs
 opt.autoindent = true
 opt.cindent = true
@@ -59,3 +59,6 @@ opt.formatoptions = opt.formatoptions
 	- "2" -- I'm not in gradeschool anymore
 -- set joinspaces
 opt.joinspaces = false -- Two spaces and grade school, we're done
+
+opt.foldmethod = 'expr'
+opt.foldexpr = 'nvim_treesitter#foldexpr()'
