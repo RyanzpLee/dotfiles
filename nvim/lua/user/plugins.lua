@@ -12,7 +12,7 @@ packer.startup(function(use)
   use { 'tpope/vim-eunuch' } -- Adds :Rename, :SudoWrite
   use { 'tpope/vim-unimpaired' } -- Adds [b and other handy mappings
   use { 'tpope/vim-sleuth' } -- Indent autodetection with editorconfig support
-  use {'kevinhwang91/nvim-bqf'}
+  use { 'kevinhwang91/nvim-bqf' }
 
   use {
     'dracula/vim',
@@ -139,7 +139,7 @@ packer.startup(function(use)
   use {
     'tpope/vim-fugitive',
     requires = 'tpope/vim-rhubarb',
-    config = function ()
+    config = function()
       require('user.plugins.fugitive')
     end
   }
@@ -148,22 +148,22 @@ packer.startup(function(use)
     'lewis6991/gitsigns.nvim',
     requires = 'nvim-lua/plenary.nvim',
     config = function()
-      require('gitsigns').setup { sign_priority = 20 }
+
     end,
   }
 
   use {
     'neoclide/coc.nvim',
     branch = 'release',
-    -- config = function()
-    --   require('user.plugins.coc')
-    -- end
   }
 
   use {
+    'fannheyward/telescope-coc.nvim'
+  }
+  use {
     'j-hui/fidget.nvim',
     config = function()
-      require('fidget').setup{}
+      require('fidget').setup {}
     end,
   }
 

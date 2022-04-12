@@ -1,20 +1,21 @@
 local telescope = require 'telescope'
 local actions = require 'telescope.actions'
+local action_layout = require 'telescope.actions.layout'
 local keymap = require 'lib.utils'.keymap
 
-local purple = '#BD93F9' -- DraculaPurple
-local fg = '#F8F8F2' -- DraculaFg
-local bg_light = '#343746' -- DraculaBgLight
-local bg_lighter = '#44475A' -- DraculaSelection
+-- local purple = '#BD93F9' -- DraculaPurple
+-- local fg = '#F8F8F2' -- DraculaFg
+-- local bg_light = '#343746' -- DraculaBgLight
+-- local bg_lighter = '#44475A' -- DraculaSelection
 
-vim.cmd("highlight TelescopeNormal guibg = '" .. bg_light .. "'")
-vim.cmd("highlight TelescopeBorder guifg = '" .. bg_light .. "' guibg = '" .. bg_light .. "'")
-vim.cmd("highlight TelescopePromptBorder guifg = '" .. bg_lighter .. "' guibg = '" .. bg_lighter .. "'")
-vim.cmd("highlight TelescopePromptNormal guifg = '" .. fg .. "' guibg = '" .. bg_lighter .. "'")
-vim.cmd("highlight TelescopePromptPrefix guifg = '" .. purple .. "' guibg = '" .. bg_lighter .. "'")
-vim.cmd [[highlight! link TelescopePromptTitle DraculaSearch]]
-vim.cmd [[highlight! link TelescopePreviewTitle WildMenu]]
-vim.cmd("highlight TelescopeResultsTitle guifg = '" .. bg_light .. "' guibg = '" .. bg_light .. "'")
+-- vim.cmd("highlight TelescopeNormal guibg = '" .. bg_light .. "'")
+-- vim.cmd("highlight TelescopeBorder guifg = '" .. bg_light .. "' guibg = '" .. bg_light .. "'")
+-- vim.cmd("highlight TelescopePromptBorder guifg = '" .. bg_lighter .. "' guibg = '" .. bg_lighter .. "'")
+-- vim.cmd("highlight TelescopePromptNormal guifg = '" .. fg .. "' guibg = '" .. bg_lighter .. "'")
+-- vim.cmd("highlight TelescopePromptPrefix guifg = '" .. purple .. "' guibg = '" .. bg_lighter .. "'")
+-- vim.cmd [[highlight! link TelescopePromptTitle DraculaSearch]]
+-- vim.cmd [[highlight! link TelescopePreviewTitle WildMenu]]
+-- vim.cmd("highlight TelescopeResultsTitle guifg = '" .. bg_light .. "' guibg = '" .. bg_light .. "'")
 
 -- vim.cmd [[highlight! link TelescopeBorder DraculaBgLight]]
 
@@ -25,12 +26,12 @@ telescope.setup {
     selection_caret = '  ',
     layout_config = {
       prompt_position = 'top',
-      preview_cutoff = 10,
     },
     sorting_strategy = 'ascending',
     mappings = {
       i = {
         ['<esc>'] = actions.close,
+        ['<C-e>'] = action_layout.toggle_preview,
       },
     },
     file_ignore_patterns = { 'dist', 'node_modules', '.git/' },
@@ -46,7 +47,7 @@ telescope.setup {
   },
   pickers = {
     find_files = {
-      find_command = { 'rg', '--files', '--iglob', '!.git', '--hidden' }
+      find_command = { 'fd', '--type', 'f', '--strip-cwd-prefix', '-H' }
     },
     buffers = {
       previewer = false,
@@ -70,6 +71,7 @@ telescope.setup {
 }
 
 require('telescope').load_extension 'fzf'
+require('telescope').load_extension 'coc'
 
 keymap('n', '<leader>ff', [[<cmd>lua require('telescope.builtin').find_files()<CR>]])
 keymap('n', '<leader>ps', [[<cmd>lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ")})<CR>]])

@@ -7,7 +7,7 @@ parser_config.solidity = {
 }
 
 require('nvim-treesitter.configs').setup {
-  ensure_installed = 'maintained',
+  -- -- ensure_installed = 'maintained',
   indent = {
     enable = { 'typescript', 'html', 'javascript' },
   },

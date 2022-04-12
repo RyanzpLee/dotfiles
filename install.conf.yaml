@@ -14,6 +14,7 @@
     ~/.config/nvim: nvim
     ~/.zshrc: zshrc
     ~/.p10k.zsh: p10k.zsh
+    ~/.config/fd/ignore: fd
 
 - shell:
     - [git submodule update --init --recursive, Installing submodules]
