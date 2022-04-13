@@ -60,5 +60,6 @@ opt.formatoptions = opt.formatoptions
 -- set joinspaces
 opt.joinspaces = false -- Two spaces and grade school, we're done
 
-opt.foldmethod = 'expr'
-opt.foldexpr = 'nvim_treesitter#foldexpr()'
+-- Currently pretty flaky with telescope https://github.com/nvim-telescope/telescope.nvim/issues/699
+-- opt.foldmethod = 'expr'
+-- opt.foldexpr = 'nvim_treesitter#foldexpr()'

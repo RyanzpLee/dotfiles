@@ -41,8 +41,6 @@ zstyle ':omz:update' mode auto
     # Vim mode
     bindkey -v
     export KEYTIMEOUT=1
-    export GIT_EDITOR=nvim
-    export EDITOR='nvim'
 
     zstyle ':autocomplete:*' min-delay 0.3
     zstyle ':completion:*:*:man:*:*' menu select=long search
@@ -54,15 +52,22 @@ zstyle ':omz:update' mode auto
 
 
     # General
-    alias vim="nvim"
-    alias v="nvim"
+    alias vi=vim
+    alias v=vim
+    # use neovim as vim
+    if [ -x "$(command -v nvim)" ]; then
+      alias vim=nvim
+      alias ovim=vim # to use vim type ovim
+      export EDITOR=nvim
+      export GIT_EDITOR=nvim
+    fi
     alias cl="clear"
+    alias lg="lazygit"
     alias stat="stat -x"
-    alias grep="rg"
-    alias cat="bat"
     alias sc="source ~/.zshrc"
     alias ec="v ~/.zshrc"
 
+    export BAT_THEME="gruvbox-dark"
     # fzf settings
     [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
     export FZF_BASE="$HOME/.fzf"
