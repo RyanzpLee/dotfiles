@@ -61,6 +61,7 @@ zstyle ':omz:update' mode auto
       export EDITOR=nvim
       export GIT_EDITOR=nvim
     fi
+
     alias cl="clear"
     alias lg="lazygit"
     alias stat="stat -x"
@@ -82,6 +83,7 @@ zstyle ':omz:update' mode auto
     command -v fd > /dev/null && export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git'
     bindkey "ç" fzf-cd-widget
 
+    bindkey -s ^f "tmux-sessionizer\n"
 # }}}
 
 # fzf git integration from https://junegunn.kr/2016/07/fzf-git/
