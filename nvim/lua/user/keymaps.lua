@@ -19,7 +19,8 @@ keymap("n", "<leader>Q", "<cmd>lua require'lib.utils'.toggle_qf('l')<CR>")
 -- use unimpared 'yoh'
 
 -- tmux sessionizer
-keymap("n", "<C-f>", ":silent !tmux neww tmux-sessionizer\n")
+-- conflicting keymap with neoscroll, so using leader atm
+keymap("n", "<leader><C-f>", ":silent !tmux neww tmux-sessionizer\n")
 
 -- Allow gf to open non-existent files
 keymap("", "gf", ":edit <cfile><CR>")

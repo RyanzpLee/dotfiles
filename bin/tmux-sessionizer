@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+set -e
+trap 'echo "No dir selected. Exiting..."; exit 0;' EXIT
+
 if ! [ -x "$(command -v fzf)" ]; then 
     echo "You do not have fzf installed." >&2
     exit 1
