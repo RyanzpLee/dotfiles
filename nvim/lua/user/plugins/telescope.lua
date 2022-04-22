@@ -79,6 +79,6 @@ keymap("n", "<leader>fh", [[<cmd>lua require('telescope.builtin').oldfiles()<CR>
 keymap("n", "<leader>pg", [[<cmd>lua require('telescope').extensions.live_grep_raw.live_grep_raw()<CR>]])
 keymap("n", "<leader>pb", [[<cmd>lua require('telescope.builtin').buffers()<CR>]])
 keymap("n", "<leader>ph", [[<cmd>lua require('telescope.builtin').help_tags()<CR>]])
-keymap("n", "<leader>ke", [[<cmd>lua require('telescope.builtin').keymaps()<CR>]])
+-- keymap("n", "<leader>ke", [[<cmd>lua require('telescope.builtin').keymaps()<CR>]])
 
 keymap("n", "<leader>gb", [[<cmd>lua require('telescope.builtin').git_branches()<CR>]])

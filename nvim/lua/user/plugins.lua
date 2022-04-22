@@ -10,15 +10,7 @@ packer.startup(function(use)
 	use({ "tpope/vim-eunuch" }) -- Adds :Rename, :SudoWrite
 	use({ "tpope/vim-unimpaired" }) -- Adds [b and other handy mappings
 	use({ "tpope/vim-sleuth" }) -- Indent autodetection with editorconfig support
-
 	use({ "kevinhwang91/nvim-bqf" })
-
-	use({
-		"numToStr/Comment.nvim",
-		config = function()
-			require("Comment").setup()
-		end,
-	})
 
 	use({
 		"catppuccin/nvim",
@@ -35,6 +27,13 @@ packer.startup(function(use)
 	--     require('user.plugins.dracula')
 	--   end
 	-- }
+
+	use({
+		"numToStr/Comment.nvim",
+		config = function()
+			require("Comment").setup()
+		end,
+	})
 
 	use({
 		"mhinz/vim-sayonara",
@@ -87,17 +86,24 @@ packer.startup(function(use)
 			require("user.plugins.notify")
 		end,
 	})
-	use({
-		"karb94/neoscroll.nvim",
-		config = function()
-			require("user.plugins.neoscroll")
-		end,
-	})
+	-- use({
+	-- 	"karb94/neoscroll.nvim",
+	-- 	config = function()
+	-- 		require("user.plugins.neoscroll")
+	-- 	end,
+	-- })
 
 	use({
 		"voldikss/vim-floaterm",
 		config = function()
 			require("user.plugins.floaterm")
+		end,
+	})
+
+	use({
+		"ThePrimeagen/harpoon",
+		config = function()
+			require("user.plugins.harpoon")
 		end,
 	})
 
