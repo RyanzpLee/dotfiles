@@ -1,5 +1,6 @@
 local telescope = require 'telescope'
 local actions = require 'telescope.actions'
+local action_layout = require 'telescope.actions.layout'
 local keymap = require 'lib.utils'.keymap
 
 -- local purple = '#BD93F9' -- DraculaPurple
@@ -20,9 +21,9 @@ local keymap = require 'lib.utils'.keymap
 
 telescope.setup {
   defaults = {
-    path_display = { 'smart' },
-    prompt_prefix = '  ',
-    selection_caret = '  ',
+    path_display = { smart },
+    prompt_prefix = '   ',
+    selection_caret = '  ',
     layout_config = {
       prompt_position = 'top',
     },
@@ -30,6 +31,7 @@ telescope.setup {
     mappings = {
       i = {
         ['<esc>'] = actions.close,
+        ['<C-e>'] = action_layout.toggle_preview,
       },
     },
     file_ignore_patterns = { 'dist', 'node_modules', '.git/' },
@@ -40,12 +42,13 @@ telescope.setup {
       '--line-number',
       '--column',
       '--smart-case',
-      '--hidden'
+      '--hidden',
+      '--trim',
     },
   },
   pickers = {
     find_files = {
-      find_command = { 'rg', '--files', '--iglob', '!.git', '--hidden' }
+      find_command = { 'fd', '--type', 'f', '--strip-cwd-prefix', '-H' }
     },
     buffers = {
       previewer = false,
@@ -69,6 +72,7 @@ telescope.setup {
 }
 
 require('telescope').load_extension 'fzf'
+require('telescope').load_extension 'coc'
 
 keymap('n', '<leader>ff', [[<cmd>lua require('telescope.builtin').find_files()<CR>]])
 keymap('n', '<leader>ps', [[<cmd>lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ")})<CR>]])

@@ -6,13 +6,21 @@ vim.g.maplocalleader = " "
 keymap("n", "<leader>ve", ":edit $MYVIMRC<CR>")
 keymap("n", "<leader>vs", ":source ~/.config/nvim/init.lua<CR>")
 -- Bufferline
-keymap("n", "<leader>bp", ":BufferLinePick<CR>")
+keymap("n", "[b", ":BufferLineCyclePrev<CR>")
+keymap("n", "]b", ":BufferLineCycleNext<CR>")
+keymap("n", "<leader>bn", ":BufferLineMoveNext<CR>")
+keymap("n", "<leader>bp", ":BufferLineMovePrev<CR>")
+keymap("n", "<leader>bk", ":BufferLinePick<CR>")
 -- Quick fix list
 keymap("n", "<C-q>", "<cmd>lua require'lib.utils'.toggle_qf('q')<CR>")
 keymap("n", "<leader>Q", "<cmd>lua require'lib.utils'.toggle_qf('l')<CR>")
 
 -- Turn off incremental search highlighting
--- keymap("n", "<leader>k", ":nohlsearch<CR>")
+-- use unimpared 'yoh'
+
+-- tmux sessionizer
+-- conflicting keymap with neoscroll, so using leader atm
+keymap("n", "<leader><C-f>", ":silent !tmux neww tmux-sessionizer\n")
 
 -- Allow gf to open non-existent files
 keymap("", "gf", ":edit <cfile><CR>")

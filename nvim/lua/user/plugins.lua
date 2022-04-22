@@ -12,32 +12,13 @@ packer.startup(function(use)
   use { 'tpope/vim-eunuch' } -- Adds :Rename, :SudoWrite
   use { 'tpope/vim-unimpaired' } -- Adds [b and other handy mappings
   use { 'tpope/vim-sleuth' } -- Indent autodetection with editorconfig support
-  use {'kevinhwang91/nvim-bqf'}
+  use { 'kevinhwang91/nvim-bqf' }
 
   use {
     'dracula/vim',
     as = 'dracula',
     config = function()
       require('user.plugins.dracula')
-    end
-  }
-
-  use {
-    'tommcdo/vim-lion',
-    config = function()
-      require('user.plugins.lion')
-    end
-  }
-
-  use {
-    'whatyouhide/vim-textobj-xmlattr',
-    requires = 'kana/vim-textobj-user'
-  }
-
-  use {
-    'sickill/vim-pasta',
-    config = function()
-      require('user.plugins.pasta')
     end
   }
 
@@ -52,13 +33,6 @@ packer.startup(function(use)
     'lukas-reineke/indent-blankline.nvim',
     config = function()
       require('user.plugins.indent-blankline')
-    end
-  }
-
-  use {
-    'AndrewRadev/splitjoin.vim',
-    config = function()
-      require('user.plugins.splitjoin')
     end
   }
 
@@ -140,7 +114,7 @@ packer.startup(function(use)
   use {
     'tpope/vim-fugitive',
     requires = 'tpope/vim-rhubarb',
-    config = function ()
+    config = function()
       require('user.plugins.fugitive')
     end
   }
@@ -149,35 +123,43 @@ packer.startup(function(use)
     'lewis6991/gitsigns.nvim',
     requires = 'nvim-lua/plenary.nvim',
     config = function()
-      -- require('gitsigns').setup { sign_priority = 20 }
       require('user.plugins.gitsigns')
     end,
   }
 
   use {
-    'neovim/nvim-lspconfig',
-    requires = {
-      'b0o/schemastore.nvim',
-      'folke/lsp-colors.nvim',
-      'weilbith/nvim-code-action-menu',
-      'jose-elias-alvarez/nvim-lsp-ts-utils',
-      'williamboman/nvim-lsp-installer',
-    },
-    config = function ()
-      require('user.plugins.lsp')
-    end
+    'neoclide/coc.nvim',
+    branch = 'release',
   }
+
   use {
-    'jose-elias-alvarez/null-ls.nvim',
-    config = function ()
-      require('user.plugins.lsp.null-ls')
-    end
+    'fannheyward/telescope-coc.nvim'
   }
+
+  -- use {
+  --     'neovim/nvim-lspconfig',
+  --     requires = {
+  --       'b0o/schemastore.nvim',
+  --       'folke/lsp-colors.nvim',
+  --       'weilbith/nvim-code-action-menu',
+  --       'jose-elias-alvarez/nvim-lsp-ts-utils',
+  --       'williamboman/nvim-lsp-installer',
+  --     },
+  --     config = function ()
+  --       require('user.plugins.lsp')
+  --     end
+  --   }
+  --   use {
+  --     'jose-elias-alvarez/null-ls.nvim',
+  --     config = function ()
+  --       require('user.plugins.lsp.null-ls')
+  --     end
+  --   }
 
   use {
     'j-hui/fidget.nvim',
     config = function()
-      require('fidget').setup{}
+      require('fidget').setup {}
     end,
   }
 

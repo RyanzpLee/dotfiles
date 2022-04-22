@@ -1,11 +1,10 @@
--- vim.g.nvim_tree_indent_markers = 1
--- -- vim.g.nvim_tree_git_hl = 1
--- vim.g.nvim_tree_highlight_opened_files = 1
--- vim.g.nvim_tree_group_empty = 1
 local status_ok, nvim_tree = pcall(require, "nvim-tree")
 if not status_ok then
   return
 end
+
+vim.g.nvim_tree_highlight_opened_files = 1
+vim.g.nvim_tree_group_empty = 1
 
 local config_status_ok, nvim_tree_config = pcall(require, "nvim-tree.config")
 if not config_status_ok then

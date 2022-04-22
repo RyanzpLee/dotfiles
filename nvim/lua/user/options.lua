@@ -26,7 +26,6 @@ opt.sidescrolloff = 8
 opt.clipboard = "unnamedplus" -- MacOS clipboard
 opt.confirm = true
 opt.backup = false
--- opt.undodir = '~/.vim/undodir'
 opt.undofile = true
 opt.updatetime = 250 -- Decrease CursorHold delay
 opt.redrawtime = 10000 -- Allow more time for loading syntax on large files
@@ -39,9 +38,9 @@ opt.shortmess:append('c')
 opt.autoindent = true
 -- opt.cindent = true
 
--- opt.breakindent = true
--- opt.showbreak = string.rep(" ", 3) -- Make it so that long lines wrap smartly
--- opt.linebreak = true
+opt.breakindent = true
+opt.showbreak = string.rep(" ", 3) -- Make it so that long lines wrap smartly
+opt.linebreak = true
 
 -- Helpful related items:
 --   1. :center, :left, :right
@@ -60,3 +59,7 @@ opt.formatoptions = opt.formatoptions
 	- "2" -- I'm not in gradeschool anymore
 -- set joinspaces
 opt.joinspaces = false -- Two spaces and grade school, we're done
+
+-- Currently pretty flaky with telescope https://github.com/nvim-telescope/telescope.nvim/issues/699
+-- opt.foldmethod = 'expr'
+-- opt.foldexpr = 'nvim_treesitter#foldexpr()'
