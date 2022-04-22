@@ -12,9 +12,9 @@ local codeActions = null_ls.builtins.code_actions
 null_ls.setup({
 	sources = {
 		formatting.prettierd.with({ extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" } }),
-        diagnostics.eslint_d,
-        codeActions.eslint_d,
-        formatting.stylua,
+		diagnostics.eslint_d,
+		codeActions.eslint_d,
+		formatting.stylua,
 		formatting.goimports,
 	},
 })
