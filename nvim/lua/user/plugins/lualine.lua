@@ -1,51 +1,29 @@
-
-local fg = '#F8F8F2' -- DraculaFg
-local bg = '#21222C' -- DraculaBgDark
-local separator = '#424450' -- DraculaSubtle
-
 require('lualine').setup {
   options = {
-    component_separators = '',
-    section_separators = '▕',
-    theme = {
-      normal = {
-        a = { fg = fg, bg = bg },
-        b = { fg = fg, bg = bg },
-        c = { fg = fg, bg = bg },
-        x = { fg = fg, bg = bg },
-        y = { fg = fg, bg = bg },
-        z = { fg = fg, bg = bg },
-      },
-      inactive = { c = { fg = fg, bg = bg } },
-    },
+    icons_enabled = true,
+    theme = 'catppuccin',
+    component_separators = { left = '', right = ''},
+    section_separators = { left = '', right = ''},
+    disabled_filetypes = {},
+    always_divide_middle = true,
+    globalstatus = true,
   },
   sections = {
-    lualine_a = {
-      'mode',
-      { '"▏"', color = { fg = separator } },
-    },
-    lualine_b = {
-      'branch',
-      'diff',
-      { '"▕"', color = { fg = separator } },
-      '"🐳 🐼" .. tostring(#vim.tbl_keys(vim.lsp.buf_get_clients()))',
-      { 'diagnostics', sources = { 'nvim_diagnostic' } },
-      { '"▏"', color = { fg = separator } },
-    },
-    lualine_c = { 'filename' },
-    lualine_x = {
-      'filetype',
-      'encoding',
-      'fileformat',
-    },
-    lualine_y = {
-      { '"▕"', color = { fg = separator } },
-      '(vim.bo.expandtab and "␠ " or "⇥ ") .. "🐼" .. vim.bo.shiftwidth',
-      { '"▏"', color = { fg = separator } },
-    },
-    lualine_z = {
-      'location',
-      'progress',
-    },
+    lualine_a = {'mode'},
+    lualine_b = {'branch', 'diff', 'diagnostics'},
+    lualine_c = {'filename'},
+    lualine_x = {'encoding', 'fileformat', 'filetype'},
+    lualine_y = {'progress'},
+    lualine_z = {'location'}
   },
+  inactive_sections = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {'filename'},
+    lualine_x = {'location'},
+    lualine_y = {},
+    lualine_z = {}
+  },
+  tabline = {},
+  extensions = {}
 }

@@ -1,6 +1,6 @@
-vim.cmd([[
-  highlight IndentBlankline guifg=#2F313C gui=nocombine
-]])
+-- vim.cmd([[
+--   highlight IndentBlankline guifg=#2F313C gui=nocombine
+-- ]])
 
 require('indent_blankline').setup {
   filetype_exclude = {

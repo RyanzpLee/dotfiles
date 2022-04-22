@@ -6,21 +6,36 @@ packer.startup(function(use)
   use { 'airblade/vim-rooter' }
   use { 'christoomey/vim-tmux-navigator' }
   use { 'farmergreg/vim-lastplace' }
-  use { 'tpope/vim-commentary' }
-  use { 'tpope/vim-repeat' }
   use { 'tpope/vim-surround' }
   use { 'tpope/vim-eunuch' } -- Adds :Rename, :SudoWrite
   use { 'tpope/vim-unimpaired' } -- Adds [b and other handy mappings
-  use { 'tpope/vim-sleuth' } -- Indent autodetection with editorconfig support
+  -- use { 'tpope/vim-sleuth' } -- Indent autodetection with editorconfig support
+  
   use { 'kevinhwang91/nvim-bqf' }
 
   use {
-    'dracula/vim',
-    as = 'dracula',
+    'numToStr/Comment.nvim',
     config = function()
-      require('user.plugins.dracula')
+      require('Comment').setup()
     end
   }
+
+
+  use {
+    'catppuccin/nvim',
+    as = 'catppuccin',
+    config = function()
+      require('user.plugins.catppuccin')
+    end
+  }
+
+  -- use {
+  --   'dracula/vim',
+  --   as = 'dracula',
+  --   config = function()
+  --     require('user.plugins.dracula')
+  --   end
+  -- }
 
   use {
     'mhinz/vim-sayonara',
@@ -127,34 +142,35 @@ packer.startup(function(use)
     end,
   }
 
-  use {
-    'neoclide/coc.nvim',
-    branch = 'release',
-  }
-
-  use {
-    'fannheyward/telescope-coc.nvim'
-  }
+  -- use {
+  --   'neoclide/coc.nvim',
+  --   branch = 'release',
+  -- }
 
   -- use {
-  --     'neovim/nvim-lspconfig',
-  --     requires = {
-  --       'b0o/schemastore.nvim',
-  --       'folke/lsp-colors.nvim',
-  --       'weilbith/nvim-code-action-menu',
-  --       'jose-elias-alvarez/nvim-lsp-ts-utils',
-  --       'williamboman/nvim-lsp-installer',
-  --     },
-  --     config = function ()
-  --       require('user.plugins.lsp')
-  --     end
-  --   }
-  --   use {
-  --     'jose-elias-alvarez/null-ls.nvim',
-  --     config = function ()
-  --       require('user.plugins.lsp.null-ls')
-  --     end
-  --   }
+  --   'fannheyward/telescope-coc.nvim'
+  -- }
+
+  use {
+      'neovim/nvim-lspconfig',
+      requires = {
+        'b0o/schemastore.nvim',
+        'folke/lsp-colors.nvim',
+        'weilbith/nvim-code-action-menu',
+        'jose-elias-alvarez/nvim-lsp-ts-utils',
+        'williamboman/nvim-lsp-installer',
+      },
+      config = function ()
+        require('user.plugins.lsp')
+      end
+    }
+
+  use {
+    'jose-elias-alvarez/null-ls.nvim',
+    config = function ()
+      require('user.plugins.lsp.null-ls')
+    end
+  }
 
   use {
     'j-hui/fidget.nvim',
@@ -192,10 +208,4 @@ packer.startup(function(use)
     config = function() require('stabilize').setup() end
   }
 
-  -- use {
-  --   'mfussenegger/nvim-lint',
-  --   config = function()
-  --     require('user.plugins.nvim-lint')
-  --   end
-  -- }
 end)
