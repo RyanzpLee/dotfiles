@@ -23,25 +23,6 @@ packer.startup(function(use)
   }
 
   use {
-    'tommcdo/vim-lion',
-    config = function()
-      require('user.plugins.lion')
-    end
-  }
-
-  use {
-    'whatyouhide/vim-textobj-xmlattr',
-    requires = 'kana/vim-textobj-user'
-  }
-
-  use {
-    'sickill/vim-pasta',
-    config = function()
-      require('user.plugins.pasta')
-    end
-  }
-
-  use {
     'mhinz/vim-sayonara',
     config = function()
       require('user.plugins.sayonara')
@@ -52,13 +33,6 @@ packer.startup(function(use)
     'lukas-reineke/indent-blankline.nvim',
     config = function()
       require('user.plugins.indent-blankline')
-    end
-  }
-
-  use {
-    'AndrewRadev/splitjoin.vim',
-    config = function()
-      require('user.plugins.splitjoin')
     end
   }
 
@@ -160,6 +134,27 @@ packer.startup(function(use)
   use {
     'fannheyward/telescope-coc.nvim'
   }
+
+  -- use {
+  --     'neovim/nvim-lspconfig',
+  --     requires = {
+  --       'b0o/schemastore.nvim',
+  --       'folke/lsp-colors.nvim',
+  --       'weilbith/nvim-code-action-menu',
+  --       'jose-elias-alvarez/nvim-lsp-ts-utils',
+  --       'williamboman/nvim-lsp-installer',
+  --     },
+  --     config = function ()
+  --       require('user.plugins.lsp')
+  --     end
+  --   }
+  --   use {
+  --     'jose-elias-alvarez/null-ls.nvim',
+  --     config = function ()
+  --       require('user.plugins.lsp.null-ls')
+  --     end
+  --   }
+
   use {
     'j-hui/fidget.nvim',
     config = function()
