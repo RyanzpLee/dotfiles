@@ -25,11 +25,11 @@ M.setup = function ()
     severity_sort = true,
     float = {
       focusable = false,
-      -- style = 'minimal',
+      style = 'minimal',
       border = 'rounded',
       source = 'always',
-      -- header = '',
-      -- prefix = '',
+      header = '',
+      prefix = '',
     }
   }
   vim.diagnostic.config(config)
@@ -71,11 +71,12 @@ local function lsp_keymaps(bufnr)
 
   buf_keymap(bufnr, 'n', '<leader>ca', ':CodeActionMenu<CR>')
   buf_keymap(bufnr, 'v', '<leader>ca', ':CodeActionMenu<CR>')
-  buf_keymap(bufnr, 'n', '<leader>d', '<cmd>lua vim.diagnostic.open_float()<CR>')
+  buf_keymap(bufnr, 'n', '<leader>do', '<cmd>lua vim.diagnostic.open_float()<CR>')
   buf_keymap(bufnr, 'n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
   buf_keymap(bufnr, 'n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>')
   buf_keymap(bufnr, 'n', '<leader>dl', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>')
-  buf_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>')
+  buf_keymap(bufnr, 'n', '<space>fo', '<cmd>lua vim.lsp.buf.formatting()<CR>')
+  buf_keymap(bufnr, 'n', '<space>F', '<cmd>LspToggleAutoFormat<CR>')
   buf_keymap(bufnr, 'n', '<leader>so', [[<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]])
   vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
 end
@@ -101,5 +102,36 @@ if not status_ok then
 end
 
 M.capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
+
+function M.enable_format_on_save()
+  vim.cmd [[
+    augroup format_on_save
+      autocmd! 
+      autocmd BufWritePre * lua vim.lsp.buf.formatting()
+    augroup end
+  ]]
+  vim.notify "Enabled format on save"
+end
+
+function M.disable_format_on_save()
+  M.remove_augroup "format_on_save"
+  vim.notify "Disabled format on save"
+end
+
+function M.toggle_format_on_save()
+  if vim.fn.exists "#format_on_save#BufWritePre" == 0 then
+    M.enable_format_on_save()
+  else
+    M.disable_format_on_save()
+  end
+end
+
+function M.remove_augroup(name)
+  if vim.fn.exists("#" .. name) == 1 then
+    vim.cmd("au! " .. name)
+  end
+end
+
+vim.cmd [[ command! LspToggleAutoFormat execute 'lua require("user.plugins.lsp.handlers").toggle_format_on_save()' ]]
 
 return M
