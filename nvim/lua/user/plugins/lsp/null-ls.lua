@@ -10,11 +10,21 @@ local diagnostics = null_ls.builtins.diagnostics
 local codeActions = null_ls.builtins.code_actions
 
 null_ls.setup({
+	on_attach = function(client)
+		if client.resolved_capabilities.document_formatting then
+			vim.cmd([[
+            augroup LspFormatting
+                autocmd! * <buffer>
+                autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
+            augroup END
+            ]])
+		end
+	end,
 	sources = {
 		formatting.prettierd.with({ extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" } }),
 		diagnostics.eslint_d,
 		codeActions.eslint_d,
-		formatting.stylua,
+		-- formatting.stylua,
 		formatting.goimports,
 	},
 })

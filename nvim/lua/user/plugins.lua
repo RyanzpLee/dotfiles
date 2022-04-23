@@ -9,7 +9,7 @@ packer.startup(function(use)
 	use({ "tpope/vim-surround" })
 	use({ "tpope/vim-eunuch" }) -- Adds :Rename, :SudoWrite
 	use({ "tpope/vim-unimpaired" }) -- Adds [b and other handy mappings
-	use({ "tpope/vim-sleuth" }) -- Indent autodetection with editorconfig support
+	-- use({ "tpope/vim-sleuth" }) -- Indent autodetection with editorconfig support
 	use({ "kevinhwang91/nvim-bqf" })
 
 	use({
