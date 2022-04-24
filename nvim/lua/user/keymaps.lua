@@ -5,12 +5,14 @@ vim.g.maplocalleader = " "
 
 keymap("n", "<leader>ve", ":edit $MYVIMRC<CR>")
 keymap("n", "<leader>vs", ":source ~/.config/nvim/init.lua<CR>")
+
 -- Bufferline
 keymap("n", "[b", ":BufferLineCyclePrev<CR>")
 keymap("n", "]b", ":BufferLineCycleNext<CR>")
 keymap("n", "<leader>bn", ":BufferLineMoveNext<CR>")
 keymap("n", "<leader>bp", ":BufferLineMovePrev<CR>")
 keymap("n", "<leader>bk", ":BufferLinePick<CR>")
+
 -- Quick fix list
 keymap("n", "<C-q>", "<cmd>lua require'lib.utils'.toggle_qf('q')<CR>")
 keymap("n", "<leader>Q", "<cmd>lua require'lib.utils'.toggle_qf('l')<CR>")
