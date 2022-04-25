@@ -7,7 +7,7 @@ end
 local formatting = null_ls.builtins.formatting
 -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
 local diagnostics = null_ls.builtins.diagnostics
-local codeActions = null_ls.builtins.code_actions
+-- local codeActions = null_ls.builtins.code_actions
 
 null_ls.setup({
 	on_attach = function(client)
@@ -21,9 +21,9 @@ null_ls.setup({
 		end
 	end,
 	sources = {
-		formatting.prettierd.with({ extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" } }),
+		formatting.prettierd,
 		diagnostics.eslint_d,
-		codeActions.eslint_d,
+		-- codeActions.eslint_d,
 		-- formatting.stylua,
 		formatting.goimports,
 	},

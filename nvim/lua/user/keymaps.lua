@@ -50,8 +50,8 @@ keymap("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
 -- Resize with arrows
 keymap("n", "<A-Up>", ":resize -2<CR>")
 keymap("n", "<A-Down>", ":resize +2<CR>")
-keymap("n", "<A-Left>", ":vertical resize +2<CR>")
-keymap("n", "<A-Right>", ":vertical resize -2<CR>")
+keymap("n", "<A-Left>", ":vertical resize -2<CR>")
+keymap("n", "<A-Right>", ":vertical resize +2<CR>")
 
 -- Move text up and down
 keymap("n", "<A-j>", ":m .+1<CR>==")

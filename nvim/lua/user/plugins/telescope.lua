@@ -5,8 +5,8 @@ local keymap = require("lib.utils").keymap
 
 telescope.setup({
 	defaults = {
-		path_display = { smart },
-		prompt_prefix = "   ",
+		-- path_display = "truncate",
+		-- prompt_prefix = "   ",
 		selection_caret = "  ",
 		layout_config = {
 			prompt_position = "top",
@@ -18,7 +18,7 @@ telescope.setup({
 				["<C-e>"] = action_layout.toggle_preview,
 			},
 		},
-		file_ignore_patterns = { "dist", "node_modules", ".git/" },
+		file_ignore_patterns = { "dist", "node_modules", ".git/", "yarn.lock" },
 		vimgrep_arguments = {
 			"rg",
 			"--no-heading",
@@ -77,6 +77,8 @@ keymap(
 ) -- luacheck: no max line length
 keymap("n", "<leader>fh", [[<cmd>lua require('telescope.builtin').oldfiles()<CR>]])
 keymap("n", "<leader>pg", [[<cmd>lua require('telescope').extensions.live_grep_raw.live_grep_raw()<CR>]])
+keymap("n", "<leader>pd", [[<cmd>lua require('telescope').extensions.live_grep_raw.live_grep_raw({cwd=vim.fn.expand("%:p:h")})<CR>]])
+
 keymap("n", "<leader>pb", [[<cmd>lua require('telescope.builtin').buffers()<CR>]])
 keymap("n", "<leader>ph", [[<cmd>lua require('telescope.builtin').help_tags()<CR>]])
 -- keymap("n", "<leader>ke", [[<cmd>lua require('telescope.builtin').keymaps()<CR>]])
