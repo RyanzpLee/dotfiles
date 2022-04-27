@@ -86,6 +86,15 @@ packer.startup(function(use)
             require("user.plugins.notify")
         end,
     })
+
+    use({
+        "SmiteshP/nvim-gps",
+        requires = "nvim-treesitter/nvim-treesitter",
+        config = function()
+            require("nvim-gps").setup()
+        end
+    })
+
     -- use({
     -- 	"karb94/neoscroll.nvim",
     -- 	config = function()
