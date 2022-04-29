@@ -46,9 +46,9 @@ catppuccin.setup({
 		which_key = false,
 		indent_blankline = {
 			enabled = true,
-			colored_indent_levels = false,
+			colored_indent_levels = true,
 		},
-		dashboard = true,
+		dashboard = false,
 		neogit = false,
 		vim_sneak = false,
 		fern = false,
