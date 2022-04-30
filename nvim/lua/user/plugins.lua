@@ -20,14 +20,6 @@ packer.startup(function(use)
         end,
     })
 
-    -- use {
-    --   'dracula/vim',
-    --   as = 'dracula',
-    --   config = function()
-    --     require('user.plugins.dracula')
-    --   end
-    -- }
-
     use({
         "numToStr/Comment.nvim",
         config = function()
@@ -42,13 +34,6 @@ packer.startup(function(use)
         end,
     })
 
-    use({
-        "lukas-reineke/indent-blankline.nvim",
-        config = function()
-            -- require("user.plugins.indent-blankline")
-            require("indent_blankline").setup()
-        end,
-    })
 
     use({
         "windwp/nvim-autopairs",
@@ -95,13 +80,6 @@ packer.startup(function(use)
             require("nvim-gps").setup()
         end
     })
-
-    -- use({
-    -- 	"karb94/neoscroll.nvim",
-    -- 	config = function()
-    -- 		require("user.plugins.neoscroll")
-    -- 	end,
-    -- })
 
     use({
         "voldikss/vim-floaterm",
@@ -162,15 +140,6 @@ packer.startup(function(use)
         end,
     })
 
-    -- use {
-    --   'neoclide/coc.nvim',
-    --   branch = 'release',
-    -- }
-
-    -- use {
-    --   'fannheyward/telescope-coc.nvim'
-    -- }
-
     use({
         "neovim/nvim-lspconfig",
         requires = {
@@ -220,6 +189,13 @@ packer.startup(function(use)
         "luukvbaal/stabilize.nvim",
         config = function()
             require("stabilize").setup()
+        end,
+    })
+
+    use({
+        "lukas-reineke/indent-blankline.nvim",
+        config = function()
+            require("user.plugins.indent-blankline")
         end,
     })
 end)

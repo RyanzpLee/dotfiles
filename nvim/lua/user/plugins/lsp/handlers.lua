@@ -62,11 +62,11 @@ end
 local function lsp_auto_format(client)
     if client.resolved_capabilities.document_formatting then
         vim.cmd([[
-			augroup formatting
-				autocmd! * <buffer>
-				autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()
-			augroup END
-		]]     )
+            augroup formatting
+            autocmd! * <buffer>
+            autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()
+            augroup END
+	]]      )
     end
 end
 
@@ -87,10 +87,9 @@ local function lsp_keymaps(bufnr)
     buf_keymap(bufnr, "n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>")
     buf_keymap(bufnr, "n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>")
     buf_keymap(bufnr, "n", "<leader>dl", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>")
-    buf_keymap(bufnr, "n", "<space>fo", "<cmd>lua vim.lsp.buf.formatting()<CR>")
+    buf_keymap(bufnr, "n", "<space>fo", "<cmd>lua vim.lsp.buf.format()<CR>")
     buf_keymap(bufnr, "n", "<space>F", "<cmd>LspToggleAutoFormat<CR>")
     buf_keymap(bufnr, "n", "<leader>so", [[<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]])
-    vim.cmd([[ command! Format execute 'lua vim.lsp.buf.formatting()' ]])
 end
 
 M.on_attach = function(client, bufnr)
@@ -100,7 +99,7 @@ M.on_attach = function(client, bufnr)
     end
 
     if client.name == "sumneko_lua" then
-        client.resolved_capabilities.document_formatting = true
+        client.resolved_capabilities.document_formatting = false
     end
 
     lsp_keymaps(bufnr)

@@ -16,13 +16,13 @@ zstyle ':omz:update' mode auto
     plugins=(
         nvm
         git
-        pip
         colored-man-pages
         zsh-autosuggestions
         fzf
         zoxide
-        autoupdate
         zsh-autocomplete
+        # Source this last
+        zsh-syntax-highlighting
     )
 
     source $ZSH/oh-my-zsh.sh
@@ -161,11 +161,6 @@ bind-git-helper() {
 bind-git-helper f b t r g
 unset -f bind-git-helper
 
-# vim: set nospell foldmethod=marker foldlevel=0:
-
 export NVM_DIR="$HOME/.nvm"
 export PATH=$PATH:/usr/local/go/bin
 export PATH="/usr/local/opt/python@3.10/bin:$PATH"
-
-# Must source at very end of file
-source ~/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
