@@ -6,7 +6,7 @@ local keymap = require("lib.utils").keymap
 telescope.setup({
 	defaults = {
 		-- path_display = "truncate",
-		-- prompt_prefix = "   ",
+		prompt_prefix = " 🔭 ",
 		selection_caret = "  ",
 		layout_config = {
 			prompt_position = "top",
