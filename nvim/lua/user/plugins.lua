@@ -21,6 +21,7 @@ local function load_plugins()
     {
       'wbthomason/packer.nvim',
       'neovim/nvim-lspconfig',
+      'lukas-reineke/indent-blankline.nvim',
     },
     config = {
       package_root = package_root,
