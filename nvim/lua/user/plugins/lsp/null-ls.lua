@@ -23,6 +23,7 @@ null_ls.setup({
 	sources = {
 		formatting.prettierd,
 		diagnostics.eslint_d,
+		formatting.stylua,
 		formatting.goimports,
 	},
 })

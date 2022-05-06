@@ -20,6 +20,7 @@ zstyle ':omz:update' mode auto
         zsh-autosuggestions
         fzf
         zoxide
+        autoupdate
         zsh-autocomplete
         # Source this last
         zsh-syntax-highlighting
