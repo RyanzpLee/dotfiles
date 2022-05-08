@@ -72,7 +72,7 @@ local function lsp_keymaps(bufnr)
 	buf_keymap(bufnr, "n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>")
 	buf_keymap(bufnr, "n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>")
 	buf_keymap(bufnr, "n", "<leader>dl", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>")
-	buf_keymap(bufnr, "n", "<space>fo", "<cmd>lua vim.lsp.buf.format()<CR>")
+	buf_keymap(bufnr, "n", "<space>fo", "<cmd>lua vim.lsp.buf.formatting()<CR>")
 	buf_keymap(bufnr, "n", "<space>F", "<cmd>LspToggleAutoFormat<CR>")
 	buf_keymap(bufnr, "n", "<leader>so", [[<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]])
 end
