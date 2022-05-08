@@ -113,11 +113,13 @@ packer.startup(function(use)
 		requires = {
 			"nvim-treesitter/playground",
 			"nvim-treesitter/nvim-treesitter-textobjects",
+			"lewis6991/spellsitter.nvim",
 			"JoosepAlviste/nvim-ts-context-commentstring",
 			"p00f/nvim-ts-rainbow",
 		},
 		config = function()
 			require("user.plugins.treesitter")
+			require("spellsitter").setup()
 		end,
 	})
 
