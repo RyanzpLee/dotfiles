@@ -15,7 +15,7 @@ opt.title = true
 opt.ignorecase = true
 opt.smartcase = true
 opt.wildmode = "longest:full,full"
-opt.wrap = false
+opt.wrap = true
 opt.list = true
 opt.listchars = "tab:▸ ,trail:·"
 opt.mouse = "a"
@@ -33,7 +33,7 @@ opt.showmode = false
 opt.fillchars = "eob: "
 opt.hidden = true
 -- opt.cmdheight = 2
-opt.shortmess:append('c')
+opt.shortmess:append("c")
 -- Tabs
 opt.autoindent = true
 -- opt.cindent = true
