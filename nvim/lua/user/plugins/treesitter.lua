@@ -3,15 +3,12 @@ local swap_next, swap_prev = (function()
 		p = "@parameter.inner",
 		f = "@function.outer",
 		e = "@element",
-
-		-- Not ready, but I think it's my fault :)
-		-- v = "@variable",
 	}
 
 	local n, p = {}, {}
 	for key, obj in pairs(swap_objects) do
-		n[string.format("<M-Space><M-%s>", key)] = obj
-		p[string.format("<M-BS><M-%s>", key)] = obj
+		n[string.format("<Space>s%s", key)] = obj
+		p[string.format("<BS>s%s", key)] = obj
 	end
 
 	return n, p
@@ -32,6 +29,15 @@ require("nvim-treesitter.configs").setup({
 	},
 	indent = {
 		enable = true,
+	},
+	textsubjects = {
+		enable = true,
+		-- prev_selection = ",", -- (Optional) keymap to select the previous selection
+		keymaps = {
+			["."] = "textsubjects-smart",
+			[";"] = "textsubjects-container-outer",
+			["i;"] = "textsubjects-container-inner",
+		},
 	},
 	textobjects = {
 		select = {
@@ -73,8 +79,14 @@ require("nvim-treesitter.configs").setup({
 		},
 		swap = {
 			enable = true,
-			swap_next = swap_next,
-			swap_previous = swap_prev,
+			swap_next = {
+				["<leader>snp"] = "@parameter.inner",
+			},
+			swap_previous = {
+				["<leader>spp"] = "@parameter.inner",
+			},
+			-- swap_next = swap_next,
+			-- swap_previous = swap_prev,
 		},
 	},
 	context_commentstring = {

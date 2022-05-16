@@ -116,6 +116,7 @@ packer.startup(function(use)
 			"lewis6991/spellsitter.nvim",
 			"JoosepAlviste/nvim-ts-context-commentstring",
 			"p00f/nvim-ts-rainbow",
+			"RRethy/nvim-treesitter-textsubjects",
 		},
 		config = function()
 			require("user.plugins.treesitter")
