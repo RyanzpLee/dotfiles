@@ -76,8 +76,12 @@ keymap(
 	[[<cmd>lua require('telescope.builtin').find_files({ no_ignore = true, prompt_title = 'All Files' })<CR>]]
 ) -- luacheck: no max line length
 keymap("n", "<leader>fh", [[<cmd>lua require('telescope.builtin').oldfiles()<CR>]])
-keymap("n", "<leader>pg", [[<cmd>lua require('telescope').extensions.live_grep_raw.live_grep_raw()<CR>]])
-keymap("n", "<leader>pd", [[<cmd>lua require('telescope').extensions.live_grep_raw.live_grep_raw({cwd=vim.fn.expand("%:p:h")})<CR>]])
+keymap("n", "<leader>pg", [[<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>]])
+keymap(
+	"n",
+	"<leader>pd",
+	[[<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args({cwd=vim.fn.expand("%:p:h")})<CR>]]
+)
 
 keymap("n", "<leader>pb", [[<cmd>lua require('telescope.builtin').buffers()<CR>]])
 keymap("n", "<leader>ph", [[<cmd>lua require('telescope.builtin').help_tags()<CR>]])
