@@ -5,7 +5,7 @@ local keymap = require("lib.utils").keymap
 
 telescope.setup({
 	defaults = {
-		-- path_display = "truncate",
+		path_display = { "smart" },
 		prompt_prefix = " 🔭 ",
 		selection_caret = "  ",
 		layout_config = {
@@ -42,6 +42,11 @@ telescope.setup({
 		},
 		oldfiles = {
 			prompt_title = "History",
+		},
+		lsp_references = {
+			include_current_line = true,
+			fname_width = 60,
+			show_line = false,
 		},
 	},
 	extensions = {
@@ -82,6 +87,7 @@ keymap(
 	"<leader>pd",
 	[[<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args({cwd=vim.fn.expand("%:p:h")})<CR>]]
 )
+keymap("n", "<leader>fr", [[<cmd>lua require('telescope.builtin').resume()<CR>]])
 
 keymap("n", "<leader>pb", [[<cmd>lua require('telescope.builtin').buffers()<CR>]])
 keymap("n", "<leader>ph", [[<cmd>lua require('telescope.builtin').help_tags()<CR>]])
