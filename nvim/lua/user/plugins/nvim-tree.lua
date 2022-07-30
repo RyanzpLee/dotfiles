@@ -36,12 +36,12 @@ nvim_tree.setup({
 		args = {},
 	},
 	filters = {
-		dotfiles = false,
+		dotfiles = true,
 		custom = {},
 	},
 	git = {
 		enable = true,
-		ignore = true,
+		ignore = false,
 		timeout = 500,
 	},
 	view = {

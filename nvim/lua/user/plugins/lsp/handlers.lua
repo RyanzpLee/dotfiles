@@ -1,6 +1,5 @@
 local buf_option = vim.api.nvim_buf_set_option
 local buf_keymap = require("lib.utils").buf_keymap
-local ts_utils_attach = require("user.plugins.lsp-ts-utils")
 
 local M = {}
 
@@ -80,10 +79,13 @@ end
 M.on_attach = function(client, bufnr)
 	if client.name == "tsserver" then
 		client.resolved_capabilities.document_formatting = false
-		ts_utils_attach(client)
 	end
 
 	if client.name == "sumneko_lua" then
+		client.resolved_capabilities.document_formatting = false
+	end
+
+	if client.name == "jsonls" then
 		client.resolved_capabilities.document_formatting = false
 	end
 

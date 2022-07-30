@@ -15,6 +15,24 @@ local swap_next, swap_prev = (function()
 end)()
 
 require("nvim-treesitter.configs").setup({
+	ensure_installed = {
+		"bash",
+		"c",
+		"cpp",
+		"css",
+		"fish",
+		"javascript",
+		"json",
+		"jsonc",
+		"lua",
+		"make",
+		"markdown",
+		"scss",
+		"toml",
+		"tsx",
+		"typescript",
+		"yaml",
+	},
 	highlight = {
 		enable = true, -- false will disable the whole extension
 	},

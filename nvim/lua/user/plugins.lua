@@ -13,6 +13,11 @@ packer.startup(function(use)
 	use({ "kevinhwang91/nvim-bqf" })
 
 	use({
+		"bluz71/vim-nightfly-guicolors",
+		as = "nightfly",
+	})
+
+	use({
 		"catppuccin/nvim",
 		as = "catppuccin",
 		config = function()
@@ -117,6 +122,7 @@ packer.startup(function(use)
 			"JoosepAlviste/nvim-ts-context-commentstring",
 			"p00f/nvim-ts-rainbow",
 			"RRethy/nvim-treesitter-textsubjects",
+			"windwp/nvim-ts-autotag",
 		},
 		config = function()
 			require("user.plugins.treesitter")
@@ -144,13 +150,19 @@ packer.startup(function(use)
 		"neovim/nvim-lspconfig",
 		requires = {
 			"williamboman/nvim-lsp-installer",
-			"jose-elias-alvarez/nvim-lsp-ts-utils",
 			"weilbith/nvim-code-action-menu",
 			"b0o/schemastore.nvim",
 			"folke/lsp-colors.nvim",
 		},
 		config = function()
 			require("user.plugins.lsp")
+		end,
+	})
+
+	use({
+		"jose-elias-alvarez/typescript.nvim",
+		config = function()
+			require("typescript").setup()
 		end,
 	})
 
