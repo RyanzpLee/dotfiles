@@ -214,4 +214,12 @@ packer.startup(function(use)
 			require("user.plugins.indent-blankline")
 		end,
 	})
+
+	use({
+		"folke/trouble.nvim",
+		requires = "kyazdani42/nvim-web-devicons",
+		config = function()
+			require("user.plugins.trouble")
+		end,
+	})
 end)
