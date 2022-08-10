@@ -27,3 +27,5 @@ brew install antibody
 brew install --cask font-jet
 brew install font-jetbrains-mono-nerd-font
 brew install antibody
+brew install lazygit
+brew install --cask postman
