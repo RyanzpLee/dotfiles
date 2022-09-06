@@ -1,10 +1,7 @@
 #!/bin/sh
-
-echo "Installing brew..."
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-
 echo "Installing brew cask..."
 brew tap homebrew/cask
+brew tap homebrew/cask-fonts
 
 echo "Installing programming stuff"
 brew install python3
@@ -23,9 +20,10 @@ brew install ripgrep
 brew install neovim
 brew install z
 brew install jq
-brew install antibody
 brew install --cask font-jet
+brew install --cask font-jetbrains-mono
 brew install font-jetbrains-mono-nerd-font
-brew install antibody
 brew install lazygit
 brew install --cask postman
+brew install zoxide
+brew install fd
