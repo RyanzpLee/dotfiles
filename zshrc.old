@@ -40,7 +40,7 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 #default editor
 export EDITOR=nvim
 alias v="nvim"
-alias vim="nvim"
+# alias vim="nvim"
 alias cl="clear"
 alias stat="stat -x"
 

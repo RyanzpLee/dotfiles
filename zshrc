@@ -53,12 +53,10 @@ zstyle ':omz:update' mode auto
 
 
     # General
-    alias vi=vim
-    alias v=vim
+    alias vi=nvim
+    alias v=nvim
     # use neovim as vim
     if [ -x "$(command -v nvim)" ]; then
-      alias vim=nvim
-      alias ovim=vim # to use vim type ovim
       export EDITOR=nvim
       export GIT_EDITOR=nvim
     fi
@@ -161,6 +159,10 @@ bind-git-helper() {
 
 bind-git-helper f b t r g
 unset -f bind-git-helper
+
+
+
+
 
 export NVM_DIR="$HOME/.nvm"
 export PATH=$PATH:/usr/local/go/bin

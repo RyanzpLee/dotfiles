@@ -163,7 +163,7 @@ packer.startup(function(use)
 	use({
 		"jose-elias-alvarez/typescript.nvim",
 		config = function()
-			require("typescript").setup()
+			require("typescript").setup({})
 		end,
 	})
 
