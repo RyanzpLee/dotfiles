@@ -44,7 +44,7 @@ M.setup = function()
 end
 
 local function lsp_auto_format(client)
-	if client.resolved_capabilities.document_formatting then
+	if client.server_capabilities.documentFormattingProvider then
 		vim.cmd([[
             augroup formatting
             autocmd! * <buffer>
@@ -71,22 +71,22 @@ local function lsp_keymaps(bufnr)
 	buf_keymap(bufnr, "n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>")
 	buf_keymap(bufnr, "n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>")
 	buf_keymap(bufnr, "n", "<leader>dl", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>")
-	buf_keymap(bufnr, "n", "<space>fo", "<cmd>lua vim.lsp.buf.formatting()<CR>")
+	buf_keymap(bufnr, "n", "<space>fo", "<cmd>lua vim.lsp.buf.format()<CR>")
 	buf_keymap(bufnr, "n", "<space>F", "<cmd>LspToggleAutoFormat<CR>")
 	buf_keymap(bufnr, "n", "<leader>so", [[<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]])
 end
 
 M.on_attach = function(client, bufnr)
 	if client.name == "tsserver" then
-		client.resolved_capabilities.document_formatting = false
+		client.server_capabilities.documentFormattingProvider = false
 	end
 
 	if client.name == "sumneko_lua" then
-		client.resolved_capabilities.document_formatting = false
+		client.server_capabilities.documentFormattingProvider = false
 	end
 
 	if client.name == "jsonls" then
-		client.resolved_capabilities.document_formatting = false
+		client.server_capabilities.documentFormattingProvider = false
 	end
 
 	lsp_keymaps(bufnr)
@@ -100,13 +100,13 @@ if not status_ok then
 	return
 end
 
-M.capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
+M.capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
 
 function M.enable_format_on_save()
 	vim.cmd([[
     augroup format_on_save
       autocmd! 
-      autocmd BufWritePre * lua vim.lsp.buf.formatting()
+      autocmd BufWritePre * lua vim.lsp.buf.format()
     augroup end
   ]])
 	vim.notify("Enabled format on save")

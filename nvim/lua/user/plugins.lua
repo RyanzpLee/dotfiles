@@ -127,7 +127,6 @@ packer.startup(function(use)
 		config = function()
 			require("user.plugins.treesitter")
 			require("spellsitter").setup()
-			require("nvim-ts-autotag").setup()
 		end,
 	})
 
