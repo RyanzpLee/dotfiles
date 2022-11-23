@@ -48,7 +48,7 @@ local function lsp_auto_format(client)
 		vim.cmd([[
             augroup formatting
             autocmd! * <buffer>
-            autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()
+            autocmd BufWritePre <buffer> lua vim.lsp.buf.format()
             augroup END
 	]])
 	end
@@ -86,6 +86,10 @@ M.on_attach = function(client, bufnr)
 	end
 
 	if client.name == "jsonls" then
+		client.server_capabilities.documentFormattingProvider = false
+	end
+
+	if client.name == "yamlls" then
 		client.server_capabilities.documentFormattingProvider = false
 	end
 

@@ -222,4 +222,11 @@ packer.startup(function(use)
 			require("user.plugins.trouble")
 		end,
 	})
+
+	use({
+		"Vonr/align.nvim",
+		config = function()
+			require("user.plugins.align")
+		end,
+	})
 end)

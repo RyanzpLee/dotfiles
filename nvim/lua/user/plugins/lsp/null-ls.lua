@@ -22,5 +22,6 @@ null_ls.setup({
 		diagnostics.eslint_d,
 		formatting.stylua,
 		formatting.goimports,
+		formatting.yamlfmt,
 	},
 })

@@ -37,12 +37,14 @@ zstyle ':omz:update' mode auto
     export PATH=$HOME/bin:/usr/local/bin:$PATH
     export DEFAULT_USER="$USER"
 
-    export NVM_LAZY=1
-
+    # export NVM_LAZY=1 - deprecated
+ 
+ 
     # Vim mode
     bindkey -v
     export KEYTIMEOUT=1
 
+    zstyle ':omz:plugins:nvm' lazy true
     zstyle ':autocomplete:*' min-delay 0.3
     zstyle ':completion:*:*:man:*:*' menu select=long search
     zstyle ':autocomplete:*' min-input 2
@@ -83,6 +85,7 @@ zstyle ':omz:update' mode auto
     bindkey "ç" fzf-cd-widget
 
     bindkey -s ^f "tmux-sessionizer\n"
+    alias sarah='git checkout $(git_main_branch)'
 # }}}
 
 # fzf git integration from https://junegunn.kr/2016/07/fzf-git/
