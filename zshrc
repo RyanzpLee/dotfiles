@@ -14,7 +14,6 @@ zstyle ':omz:update' mode auto
 # Plugins {{{
 # ==============================================================================
     plugins=(
-        nvm
         git
         colored-man-pages
         zsh-autosuggestions
@@ -22,6 +21,7 @@ zstyle ':omz:update' mode auto
         zoxide
         autoupdate
         zsh-autocomplete
+        nvm
         # Source this last
         zsh-syntax-highlighting
     )
@@ -37,9 +37,6 @@ zstyle ':omz:update' mode auto
     export PATH=$HOME/bin:/usr/local/bin:$PATH
     export DEFAULT_USER="$USER"
 
-    # export NVM_LAZY=1 - deprecated
- 
- 
     # Vim mode
     bindkey -v
     export KEYTIMEOUT=1
@@ -55,7 +52,6 @@ zstyle ':omz:update' mode auto
 
 
     # General
-    alias vi=nvim
     alias v=nvim
     # use neovim as vim
     if [ -x "$(command -v nvim)" ]; then

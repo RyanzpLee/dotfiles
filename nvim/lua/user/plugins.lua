@@ -223,10 +223,17 @@ packer.startup(function(use)
 		end,
 	})
 
+	--[[ use({ ]]
+	--[[ 	"Vonr/align.nvim", ]]
+	--[[ 	config = function() ]]
+	--[[ 		require("user.plugins.align") ]]
+	--[[ 	end, ]]
+	--[[ }) ]]
+
 	use({
-		"Vonr/align.nvim",
+		"echasnovski/mini.align",
 		config = function()
-			require("user.plugins.align")
+			require("mini.align").setup()
 		end,
 	})
 end)
