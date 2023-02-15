@@ -224,7 +224,7 @@ packer.startup(function(use)
 	})
 
 	--[[ use({ ]]
-	--[[ 	"Vonr/align.nvim", ]]
+	--[[ 	"Vonr/.nvim", ]]
 	--[[ 	config = function() ]]
 	--[[ 		require("user.plugins.align") ]]
 	--[[ 	end, ]]
@@ -234,6 +234,20 @@ packer.startup(function(use)
 		"echasnovski/mini.align",
 		config = function()
 			require("mini.align").setup()
+		end,
+	})
+
+	use({
+		"echasnovski/mini.sessions",
+		config = function()
+			require("user.plugins.miniSessions")
+		end,
+	})
+
+	use({
+		"echasnovski/mini.starter",
+		config = function()
+			require("mini.starter").setup()
 		end,
 	})
 end)
