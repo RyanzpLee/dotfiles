@@ -28,6 +28,6 @@ sessions.setup({
 	verbose = { read = false, write = true, delete = true },
 })
 
-keymap("n", "<leader>msw", [[ :lua MiniSessions.write(vim.fn.input("Session Name >"))<CR> ]])
+keymap("n", "<leader>msw", [[ :lua MiniSessions.write(vim.fn.input("Session Name>"))<CR> ]])
 keymap("n", "<leader>ms", [[ :lua print(vim.inspect(MiniSessions.detected))<CR> ]])
 --[[ :lua =MiniSessions.detected if you are on Neovim>=0.8.2 ]]

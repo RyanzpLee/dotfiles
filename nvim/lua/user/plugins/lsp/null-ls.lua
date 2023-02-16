@@ -19,7 +19,7 @@ null_ls.setup({
 	end,
 	sources = {
 		formatting.prettier,
-		diagnostics.eslint_d,
+		diagnostics.eslint,
 		formatting.stylua,
 		formatting.goimports,
 		formatting.yamlfmt,
