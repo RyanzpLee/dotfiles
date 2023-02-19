@@ -12,7 +12,8 @@ M.treesitter = {
 		"dockerfile",
 		"typescript",
 		"python",
-		"yaml", "json",
+		"yaml",
+		"json",
 		"json5",
 	},
 	autopairs = {
@@ -38,24 +39,25 @@ M.mason = {
 		"css-lsp",
 		"html-lsp",
 		"typescript-language-server",
-		-- "deno",
-		--
+		"emmet-ls",
+		"json-lsp",
+    -- "eslint",
+    -- "prettier",
+		-- "yaml-language-server",
+		-- shell
+		-- "shfmt",
+		-- "shellcheck",
 		-- "bash-language-server",
-		-- "css-lsp",
 		-- "diagnostic-languageserver",
 		-- "docker-compose-language-service",
 		-- "dockerfile-language-server",
 		-- "eslint",
 		-- "jq",
 		-- "js-debug-adapter",
-		-- "json-lsp",
 		-- "markdownlint",
-		-- "prettier",
 		-- "pylint",
 		-- "pyright",
 		-- "rustfmt",
-		-- "stylua",
-		-- "typescript-language-server",
 		-- "yaml-language-server",
 		-- "yamlfmt",
 	},
@@ -76,15 +78,16 @@ M.nvimtree = {
 		},
 	},
 }
-
+-- requiring in here breaks the config
+-- local lga_actions = require("telescope-live-grep-args.actions")
 M.telescope = {
 	extensions = {
 		live_grep_args = {
 			auto_quoting = true, -- enable/disable auto-quoting
 			mappings = { -- extend mappings
 				i = {
-				  ["<C-k>"] = require("telescope-live-grep-args.actions").quote_prompt(),
-				  ["<C-u>"] = require("telescope-live-grep-args.actions").quote_prompt { postfix = " --iglob " },
+				  -- ["<C-k>"] = lga_actions.quote_prompt(),
+				  -- ["<C-u>"] = lga_actions.quote_prompt { postfix = " --iglob " },
 				},
 			},
 		},
