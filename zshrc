@@ -166,5 +166,3 @@ unset -f bind-git-helper
 export NVM_DIR="$HOME/.nvm"
 export PATH=$PATH:/usr/local/go/bin
 export PATH="/usr/local/opt/python@3.10/bin:$PATH"
-export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
