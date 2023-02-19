@@ -15,6 +15,7 @@
     ~/.zshrc: zshrc
     ~/.p10k.zsh: p10k.zsh
     ~/.config/fd/ignore: fd
+    ~/.config/nvim/lua/custom: nvchad
 
 - shell:
     - [git submodule update --init --recursive, Installing submodules]

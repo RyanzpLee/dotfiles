@@ -11,7 +11,7 @@ M.general = {
     ["]q"] = { ":cnext<CR>", "Previous quickfix" },
   },
   i = {
-    ["<C-c"] = { "<Esc>", "Control-c doesn't trigger InsertLeave event" },
+    ["<C-c>"] = { "<Esc>", "Control-c doesn't trigger InsertLeave event" },
     ["<A-j>"] = { "<Esc>:m .+1<CR>==gi", "move current line down one line" },
     ["<A-k>"] = { "<Esc>:m .-2<CR>==gi", "move current line up one line" },
   },
