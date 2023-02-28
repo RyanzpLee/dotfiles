@@ -58,6 +58,7 @@ M.telescope = {
 			end,
 		},
 		["<leader>gs"] = { "<cmd> Telescope git_status <CR>", "git status" },
+		["<leader>gr"] = { "<cmd> Telescope lsp_references <CR>", "lsp references" },
 	},
 }
 

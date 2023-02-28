@@ -20,6 +20,10 @@ local sources = {
 
   -- cpp
   b.formatting.clang_format,
+
+   -- Shell
+   b.formatting.shfmt,
+   -- b.diagnostics.shellcheck.with { diagnostics_format = "#{m} [#{c}]" },
 }
 
 null_ls.setup {

@@ -62,7 +62,7 @@ local plugins = {
 	["echasnovski/mini.starter"] = {
 		after = "base46",
 		config = function()
-			require("mini.align").setup()
+			require("mini.starter").setup()
 		end,
 	},
 	["echasnovski/mini.sessions"] = {
@@ -81,6 +81,7 @@ local plugins = {
 
 	-- remove plugin
 	-- ["hrsh7th/cmp-path"] = false,
+
 }
 
 return plugins
