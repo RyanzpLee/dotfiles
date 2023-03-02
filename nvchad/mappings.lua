@@ -1,6 +1,12 @@
 ---@type MappingsConfig
 local M = {}
 
+M.disabled = {
+	n = {
+		["<leader>ls"] = "",
+	},
+}
+
 M.general = {
 	n = {
 		["<A-j>"] = { ":m .+1<CR>==", "move current line down one line" },
@@ -81,6 +87,12 @@ M.lspconfig = {
 			end,
 			"goto_next",
 		},
+		["<leader>sh"] = {
+			function()
+				vim.lsp.buf.signature_help()
+			end,
+			"lsp signature_help",
+		},
 	},
 }
 
@@ -88,6 +100,17 @@ M.minisessions = {
 	n = {
 		["<leader>msw"] = { ":lua MiniSessions.write(vim.fn.input('Session Name>'))<CR>" },
 		["<leader>msd"] = { " :lua =MiniSessions.detected<CR>" },
+	},
+}
+
+M.harpoon = {
+	n = {
+		["<leader>a"] = { ":lua require('harpoon.mark').add_file()<CR>" },
+		["<C-e>"] = { ":lua require('harpoon.ui').toggle_quick_menu()<CR>" },
+		["<leader>j"] = { ":lua require('harpoon.ui').nav_file(1)<CR>" },
+		["<leader>k"] = { ":lua require('harpoon.ui').nav_file(2)<CR>" },
+		["<leader>l"] = { ":lua require('harpoon.ui').nav_file(3)<CR>" },
+		["<leader>;"] = { ":lua require('harpoon.ui').nav_file(4)<CR>" },
 	},
 }
 

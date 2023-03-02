@@ -79,6 +79,8 @@ local plugins = {
 		after = "nvim-treesitter",
 	},
 
+	["ThePrimeagen/harpoon"] = {},
+
 	-- code formatting, linting etc
 	["jose-elias-alvarez/null-ls.nvim"] = {
 		after = "nvim-lspconfig",
