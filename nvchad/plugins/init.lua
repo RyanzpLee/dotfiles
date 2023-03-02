@@ -71,6 +71,14 @@ local plugins = {
 		end,
 	},
 
+	["nvim-treesitter/nvim-treesitter-textobjects"] = {
+		after = "nvim-treesitter",
+	},
+
+	["nvim-treesitter/playground"] = {
+		after = "nvim-treesitter",
+	},
+
 	-- code formatting, linting etc
 	["jose-elias-alvarez/null-ls.nvim"] = {
 		after = "nvim-lspconfig",
@@ -81,7 +89,6 @@ local plugins = {
 
 	-- remove plugin
 	-- ["hrsh7th/cmp-path"] = false,
-
 }
 
 return plugins

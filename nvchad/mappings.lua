@@ -9,6 +9,7 @@ M.general = {
 		["<leader>q"] = { "<cmd>lua require'custom.utils'.toggle_qf('q')<CR>", "Open/close quick fix list" },
 		["[q"] = { ":cprevious<CR>", "Next quickfix" },
 		["]q"] = { ":cnext<CR>", "Previous quickfix" },
+		-- ["<CR>"] = { ":TSPlaygroundToggle<CR>" },
 	},
 	i = {
 		["<C-c>"] = { "<Esc>", "Control-c doesn't trigger InsertLeave event" },
@@ -52,13 +53,23 @@ M.tmux_navigator = {
 
 M.telescope = {
 	n = {
-		["<leader>pw"] = {
+		["<leader>pg"] = {
 			function()
 				require("telescope").extensions.live_grep_args.live_grep_args()
 			end,
 		},
+		["<leader>pd"] = {
+			function()
+				require("telescope").extensions.live_grep_args.live_grep_args({ cwd = vim.fn.expand("%:p:h") })
+			end,
+		},
 		["<leader>gs"] = { "<cmd> Telescope git_status <CR>", "git status" },
 		["<leader>gr"] = { "<cmd> Telescope lsp_references <CR>", "lsp references" },
+		["<leader>fr"] = { "<cmd> Telescope resume <CR>", "resume last picker" },
+		["<leader>pw"] = {
+			"<cmd>lua require('telescope.builtin').grep_string({ search = vim.fn.expand('<cword>')})<CR>",
+			"grep word under cursor",
+		},
 	},
 }
 
@@ -70,6 +81,13 @@ M.lspconfig = {
 			end,
 			"goto_next",
 		},
+	},
+}
+
+M.minisessions = {
+	n = {
+		["<leader>msw"] = { ":lua MiniSessions.write(vim.fn.input('Session Name>'))<CR>" },
+		["<leader>msd"] = { " :lua =MiniSessions.detected<CR>" },
 	},
 }
 

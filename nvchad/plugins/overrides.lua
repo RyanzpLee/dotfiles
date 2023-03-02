@@ -36,15 +36,6 @@ M.treesitter = {
 			scope_incremental = "<M-e>", -- increment to the upper scope (as defined in locals.scm)
 		},
 	},
-	textsubjects = {
-		enable = true,
-		-- prev_selection = ",", -- (Optional) keymap to select the previous selection
-		keymaps = {
-			["."] = "textsubjects-smart",
-			[";"] = "textsubjects-container-outer",
-			["i;"] = "textsubjects-container-inner",
-		},
-	},
 	textobjects = {
 		select = {
 			enable = true,
@@ -88,7 +79,7 @@ M.treesitter = {
 			swap_next = {
 				["<Leader>sn"] = "@parameter.inner",
 			},
-			swap_prev = {
+			swap_previous = {
 				["<Leader>sp"] = "@parameter.inner",
 			},
 		},
