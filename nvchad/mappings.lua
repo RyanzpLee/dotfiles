@@ -15,7 +15,8 @@ M.general = {
 		["<leader>q"] = { "<cmd>lua require'custom.utils'.toggle_qf('q')<CR>", "Open/close quick fix list" },
 		["[q"] = { ":cprevious<CR>", "Next quickfix" },
 		["]q"] = { ":cnext<CR>", "Previous quickfix" },
-		-- ["<CR>"] = { ":TSPlaygroundToggle<CR>" },
+		["<leader>d"] = { '"_d', "delete without yank" },
+		["<leader>tsp"] = { ":TSPlaygroundToggle<CR>" },
 	},
 	i = {
 		["<C-c>"] = { "<Esc>", "Control-c doesn't trigger InsertLeave event" },
@@ -25,6 +26,7 @@ M.general = {
 	v = {
 		["<A-j>"] = { ":m '>+1<CR>gv-gv", "move current line down one line" },
 		["<A-k>"] = { ":m '<-2<CR>gv-gv", "move current line up one line" },
+		["<leader>d"] = { '"_d', "delete without yank" },
 	},
 }
 

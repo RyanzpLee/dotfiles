@@ -75,7 +75,15 @@ local plugins = {
 		after = "nvim-treesitter",
 	},
 
+	["RRethy/nvim-treesitter-textsubjects"] = {
+		after = "nvim-treesitter",
+	},
+
 	["nvim-treesitter/playground"] = {
+		after = "nvim-treesitter",
+	},
+
+	["windwp/nvim-ts-autotag"] = {
 		after = "nvim-treesitter",
 	},
 

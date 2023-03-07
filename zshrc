@@ -166,3 +166,4 @@ unset -f bind-git-helper
 export NVM_DIR="$HOME/.nvm"
 export PATH=$PATH:/usr/local/go/bin
 export PATH="/usr/local/opt/python@3.10/bin:$PATH"
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home"
