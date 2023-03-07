@@ -21,6 +21,9 @@ local sources = {
 	-- cpp
 	b.formatting.clang_format,
 
+	-- rust
+	b.formatting.rustfmt,
+
 	-- Shell
 	b.formatting.shfmt,
 	-- b.diagnostics.shellcheck.with { diagnostics_format = "#{m} [#{c}]" },

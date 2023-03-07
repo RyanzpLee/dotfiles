@@ -87,13 +87,9 @@ M.treesitter = {
 			enable = true,
 			swap_next = {
 				["<leader>sn"] = "@swappable",
-				["<leader>nia"] = "@parameter.inner",
-				["<Leader>naa"] = "@parameter.outer",
 			},
 			swap_previous = {
 				["<leader>sp"] = "@swappable",
-				["<leader>pia"] = "@parameter.inner",
-				["<Leader>paa"] = "@parameter.outer",
 			},
 		},
 	},
