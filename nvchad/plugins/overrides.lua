@@ -86,10 +86,14 @@ M.treesitter = {
 		swap = {
 			enable = true,
 			swap_next = {
-				["<Leader>sn"] = "@swappable",
+				["<leader>sn"] = "@swappable",
+				["<leader>nia"] = "@parameter.inner",
+				["<Leader>naa"] = "@parameter.outer",
 			},
 			swap_previous = {
-				["<Leader>sp"] = "@swappable",
+				["<leader>sp"] = "@swappable",
+				["<leader>pia"] = "@parameter.inner",
+				["<Leader>paa"] = "@parameter.outer",
 			},
 		},
 	},
@@ -120,26 +124,6 @@ M.mason = {
 		"stylua",
 		"typescript-language-server",
 		"yaml-language-server",
-
-		-- "eslint",
-		-- "prettier",
-		-- "yaml-language-server",
-		-- shell
-		-- "shfmt",
-		-- "shellcheck",
-		-- "bash-language-server",
-		-- "diagnostic-languageserver",
-		-- "docker-compose-language-service",
-		-- "dockerfile-language-server",
-		-- "eslint",
-		-- "jq",
-		-- "js-debug-adapter",
-		-- "markdownlint",
-		-- "pylint",
-		-- "pyright",
-		-- "rustfmt",
-		-- "yaml-language-server",
-		-- "yamlfmt",
 	},
 }
 
