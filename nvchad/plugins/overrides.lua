@@ -1,5 +1,9 @@
 local M = {}
 
+-- M.comment = {
+-- 	pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
+-- }
+
 M.treesitter = {
 	ensure_installed = {
 		"vim",
@@ -15,6 +19,11 @@ M.treesitter = {
 		"yaml",
 		"json",
 		"json5",
+		"rst",
+	},
+	context_commentstring = {
+		enable = true,
+		enable_autocmd = false,
 	},
 	autopairs = {
 		enable = true,
@@ -67,20 +76,30 @@ M.treesitter = {
 			enable = true,
 			set_jumps = true, -- whether to set jumps in the jumplist
 			goto_next_start = {
+				["]aa"] = "@swappable",
 				["]m"] = "@function.outer",
 				["]]"] = "@class.outer",
 			},
 			goto_next_end = {
+				["]ia"] = "@swappable",
 				["]M"] = "@function.outer",
 				["]["] = "@class.outer",
 			},
 			goto_previous_start = {
+				["[aa"] = "@swappable",
 				["[m"] = "@function.outer",
 				["[["] = "@class.outer",
 			},
 			goto_previous_end = {
+				["[ia"] = "@swappable",
 				["[M"] = "@function.outer",
 				["[]"] = "@class.outer",
+			},
+			goto_next = {
+				["]p"] = "@swappable",
+			},
+			goto_previous = {
+				["[p"] = "@swappable",
 			},
 		},
 		swap = {
