@@ -34,14 +34,6 @@ local plugins = {
 		override_options = overrides.telescope,
 	},
 
-	-- Install a plugin
-	-- ["max397574/better-escape.nvim"] = {
-	--   event = "InsertEnter",
-	--   config = function()
-	--     require("better_escape").setup()
-	--   end,
-	-- },
-
 	-- new plugins list
 
 	-- ["kevinhwang91/nvim-bqf"] = {ft = "qf"},
@@ -67,7 +59,7 @@ local plugins = {
 	},
 	["echasnovski/mini.sessions"] = {
 		config = function()
-			require("custom.plugins.miniSessions")
+			require("custom.configs.miniSessions")
 		end,
 	},
 

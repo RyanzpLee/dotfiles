@@ -52,4 +52,3 @@ autocmd("TextYankPost", {
 
 opt.relativenumber = true
 opt.hlsearch = false
-
