@@ -13,18 +13,24 @@ M.disabled = {
 -- vim.keymap.set({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move_next)
 -- vim.keymap.set({ "n", "x", "o" }, ",", ts_repeat_move.repeat_last_move_previous)
 
+M.gitsigns = {
+	n = {
+		["<leader>tb"] = { ":Gitsigns toggle_current_line_blame" },
+	},
+}
+
 M.treesitter = {
 	n = {
-		[";"] = {
-			function()
-				require("nvim-treesitter.textobjects.repeatable_move").repeat_last_move_next()
-			end,
-		},
-		[","] = {
-			function()
-				require("nvim-treesitter.textobjects.repeatable_move").repeat_last_move_previous()
-			end,
-		},
+		-- [";"] = {
+		-- 	function()
+		-- 		require("nvim-treesitter.textobjects.repeatable_move").repeat_last_move_next()
+		-- 	end,
+		-- },
+		-- [","] = {
+		-- 	function()
+		-- 		require("nvim-treesitter.textobjects.repeatable_move").repeat_last_move_previous()
+		-- 	end,
+		-- },
 	},
 }
 

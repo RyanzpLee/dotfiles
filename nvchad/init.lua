@@ -3,6 +3,12 @@ local augroup = vim.api.nvim_create_augroup
 local opt = vim.opt
 local mode = vim.api.nvim_get_mode()
 
+-- set json to jsonc
+autocmd({ "BufNewFile", "BufRead" }, {
+	pattern = "tsconfig.json",
+	command = "setl filetype=jsonc",
+})
+
 -- Auto resize panes when resizing nvim window
 autocmd("VimResized", {
 	pattern = "*",
