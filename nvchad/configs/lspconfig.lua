@@ -1,24 +1,28 @@
 local on_attach = require("plugins.configs.lspconfig").on_attach
 local capabilities = require("plugins.configs.lspconfig").capabilities
 
-local lspconfig = require "lspconfig"
+local lspconfig = require("lspconfig")
 
 -- if you just want default config for the servers then put them in a table
-local servers = { "html", "cssls", "tsserver", "clangd", "emmet_ls", "pyright", "jsonls", "bashls", "rust_analyzer" }
+local servers = { "html", "cssls", "tsserver", "clangd", "emmet_ls", "pyright", "bashls", "rust_analyzer", "graphql" }
 
 for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-  }
+	lspconfig[lsp].setup({
+		on_attach = on_attach,
+		capabilities = capabilities,
+	})
 end
 
--- 
--- lspconfig.jsonls.setup {
---  on_attach = on_attach,
---  capabilities = capabilities,
--- }
-
+lspconfig.jsonls.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+	settings = {
+		json = {
+			schemas = require("schemastore").json.schemas(),
+			validate = { enable = true },
+		},
+	},
+})
 
 --  Use :KickstartFormatToggle to toggle autoformatting on or off
 local format_is_enabled = true

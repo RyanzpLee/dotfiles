@@ -96,11 +96,20 @@ local plugins = {
 	},
 
 	{
+		"kylechui/nvim-surround",
+		keys = { "ys", "ds", "cs", "S" },
+		config = function()
+			require("nvim-surround").setup()
+		end,
+	},
+
+	{
 		"p00f/nvim-ts-rainbow",
 	},
 
 	{
 		"echasnovski/mini.align",
+		lazy = false,
 		config = function()
 			require("mini.align").setup()
 		end,
@@ -118,6 +127,10 @@ local plugins = {
 				pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
 			}
 		end,
+	},
+
+	{
+		"b0o/schemastore.nvim",
 	},
 }
 
