@@ -4,6 +4,11 @@ local overrides = require("custom.configs.overrides")
 local plugins = {
 
 	{
+		"github/copilot.vim",
+		lazy = false,
+	},
+
+	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
 			-- format & linting
@@ -61,6 +66,11 @@ local plugins = {
 			return {
 				defaults = {
 					file_ignore_patterns = { "dist", "node_modules", ".git/", "yarn.lock" },
+					mappings = {
+						i = {
+							["<C-e>"] = require("telescope.actions.layout").toggle_preview,
+						},
+					},
 				},
 				pickers = {
 					lsp_references = {
@@ -75,7 +85,7 @@ local plugins = {
 						mappings = { -- extend mappings
 							i = {
 								["<C-k>"] = lga_actions.quote_prompt(),
-								["<C-u>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
+								["<C-o>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
 								["<C-s>"] = lga_actions.quote_prompt({ postfix = " --iglob !*spec*" }),
 							},
 						},

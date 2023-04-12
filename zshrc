@@ -79,7 +79,8 @@ zstyle ':omz:update' mode auto
     command -v fd > /dev/null && export FZF_CTRL_T_COMMAND='fd --type f --type d --hidden --follow --exclude .git'
     command -v fd > /dev/null && export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git'
     bindkey "ç" fzf-cd-widget
-
+    bindkey "^E" autosuggest-accept
+    
     bindkey -s ^f "tmux-sessionizer\n"
     alias sarah='git checkout $(git_main_branch)'
 # }}}
