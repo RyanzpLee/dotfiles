@@ -39,7 +39,7 @@ zstyle ':omz:update' mode auto
 
     # Vim mode
     bindkey -v
-    export KEYTIMEOUT=1
+    # export KEYTIMEOUT=1
 
     zstyle ':omz:plugins:nvm' lazy true
     zstyle ':autocomplete:*' min-delay 0.3
@@ -82,13 +82,32 @@ zstyle ':omz:update' mode auto
     bindkey "^E" autosuggest-accept
     
     bindkey -s ^f "tmux-sessionizer\n"
+
+    alias l="exa -l --icons --git -a"
+    alias lt="exa --tree --level=2 --long --icons --git"
 # }}}
 
+docker() {
+ if [[ `uname -m` == "arm64" ]] && [[ "$1" == "run" || "$1" == "build" ]]; then
+    /usr/local/bin/docker "$1" --platform linux/amd64 "${@:2}"
+  else
+     /usr/local/bin/docker "$@"
+  fi
+}
 
 # source junegunns fzf git helpers
 source ~/dotfiles/fzf-git.sh
+
 
 export NVM_DIR="$HOME/.nvm"
 export PATH=$PATH:/usr/local/go/bin
 export PATH="/opt/homebrew/bin/python3:$PATH"
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home"
+
+# pnpm
+export PNPM_HOME="/Users/rle44/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end

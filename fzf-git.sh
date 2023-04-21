@@ -171,8 +171,7 @@ _fzf_git_tags() {
     --preview 'git show --color=always {}' "$@"
 }
 
-_fzf_git_hashes() {
-  _fzf_git_check || return
+_fzf_git_ghashes() {
   git log --date=short --format="%C(green)%C(bold)%cd %C(auto)%h%d %s (%an)" --graph --color=always |
   _fzf_git_fzf --ansi --no-sort --bind 'ctrl-s:toggle-sort' \
     --border-label '🍡 Hashes' \
@@ -251,7 +250,7 @@ elif [[ -n "${ZSH_VERSION:-}" ]]; then
     done
   }
 fi
-__fzf_git_init files branches tags remotes hashes stashes each_ref
+__fzf_git_init files branches tags remotes ghashes stashes each_ref
 
 # -----------------------------------------------------------------------------
 fi

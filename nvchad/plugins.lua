@@ -101,7 +101,7 @@ local plugins = {
 	},
 
 	{
-		"christoomey/vim-tmux-navigator",
+		"alexghergh/nvim-tmux-navigation",
 		lazy = false,
 	},
 
