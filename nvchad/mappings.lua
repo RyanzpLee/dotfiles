@@ -1,10 +1,18 @@
 ---@type MappingsTable
 local M = {}
 
-M.disabled = {
+--[[ M.copilot = {
 	n = {
-		["<leader>ls"] = "",
+		["C-e"] = { "copilot#Accept('<CR>')" },
 	},
+	i = {
+		["C-e"] = { "copilot#Accept('<CR>')" },
+	},
+} ]]
+M.disabled = {
+  n = {
+    ["<leader>ls"] = "",
+  },
 }
 -- local ts_repeat_move = require("nvim-treesitter.textobjects.repeatable_move")
 
@@ -14,133 +22,133 @@ M.disabled = {
 -- vim.keymap.set({ "n", "x", "o" }, ",", ts_repeat_move.repeat_last_move_previous)
 
 M.gitsigns = {
-	n = {
-		["<leader>tb"] = { ":Gitsigns toggle_current_line_blame" },
-	},
+  n = {
+    ["<leader>tb"] = { ":Gitsigns toggle_current_line_blame" },
+  },
 }
 
 M.treesitter = {
-	n = {
-		-- [";"] = {
-		-- 	function()
-		-- 		require("nvim-treesitter.textobjects.repeatable_move").repeat_last_move_next()
-		-- 	end,
-		-- },
-		-- [","] = {
-		-- 	function()
-		-- 		require("nvim-treesitter.textobjects.repeatable_move").repeat_last_move_previous()
-		-- 	end,
-		-- },
-	},
+  n = {
+    -- [";"] = {
+    -- 	function()
+    -- 		require("nvim-treesitter.textobjects.repeatable_move").repeat_last_move_next()
+    -- 	end,
+    -- },
+    -- [","] = {
+    -- 	function()
+    -- 		require("nvim-treesitter.textobjects.repeatable_move").repeat_last_move_previous()
+    -- 	end,
+    -- },
+  },
 }
 
 M.general = {
-	n = {
-		["<A-j>"] = { ":m .+1<CR>==", "move current line down one line" },
-		["<A-k>"] = { ":m .-2<CR>==", "move current line up one line" },
-		-- Quick fix bindings
-		["<leader>q"] = { "<cmd>lua require'custom.utils'.toggle_qf('q')<CR>", "Open/close quick fix list" },
-		["[q"] = { ":cprevious<CR>", "Next quickfix" },
-		["]q"] = { ":cnext<CR>", "Previous quickfix" },
-		["<leader>d"] = { '"_d', "delete without yank" },
-		["<leader>tsp"] = { ":TSPlaygroundToggle<CR>" },
-	},
-	i = {
-		["<C-c>"] = { "<Esc>", "Control-c doesn't trigger InsertLeave event" },
-		["<A-j>"] = { "<Esc>:m .+1<CR>==gi", "move current line down one line" },
-		["<A-k>"] = { "<Esc>:m .-2<CR>==gi", "move current line up one line" },
-	},
-	v = {
-		["<A-j>"] = { ":m '>+1<CR>gv-gv", "move current line down one line" },
-		["<A-k>"] = { ":m '<-2<CR>gv-gv", "move current line up one line" },
-		["<leader>d"] = { '"_d', "delete without yank" },
-	},
+  n = {
+    ["<A-j>"] = { ":m .+1<CR>==", "move current line down one line" },
+    ["<A-k>"] = { ":m .-2<CR>==", "move current line up one line" },
+    -- Quick fix bindings
+    ["<leader>q"] = { "<cmd>lua require'custom.utils'.toggle_qf('q')<CR>", "Open/close quick fix list" },
+    ["[q"] = { ":cprevious<CR>", "Next quickfix" },
+    ["]q"] = { ":cnext<CR>", "Previous quickfix" },
+    ["<leader>d"] = { '"_d', "delete without yank" },
+    ["<leader>tsp"] = { ":TSPlaygroundToggle<CR>" },
+  },
+  i = {
+    ["<C-c>"] = { "<Esc>", "Control-c doesn't trigger InsertLeave event" },
+    ["<A-j>"] = { "<Esc>:m .+1<CR>==gi", "move current line down one line" },
+    ["<A-k>"] = { "<Esc>:m .-2<CR>==gi", "move current line up one line" },
+  },
+  v = {
+    ["<A-j>"] = { ":m '>+1<CR>gv-gv", "move current line down one line" },
+    ["<A-k>"] = { ":m '<-2<CR>gv-gv", "move current line up one line" },
+    ["<leader>d"] = { '"_d', "delete without yank" },
+  },
 }
 
 M.tmux_navigator = {
-	n = {
-		["<C-h>"] = {
-			function()
-				require("nvim-tmux-navigation").NvimTmuxNavigateLeft()
-			end,
-		},
+  n = {
+    ["<C-h>"] = {
+      function()
+        require("nvim-tmux-navigation").NvimTmuxNavigateLeft()
+      end,
+    },
 
-		["<C-j>"] = {
-			function()
-				require("nvim-tmux-navigation").NvimTmuxNavigateDown()
-			end,
-		},
+    ["<C-j>"] = {
+      function()
+        require("nvim-tmux-navigation").NvimTmuxNavigateDown()
+      end,
+    },
 
-		["<C-k>"] = {
-			function()
-				require("nvim-tmux-navigation").NvimTmuxNavigateUp()
-			end,
-		},
+    ["<C-k>"] = {
+      function()
+        require("nvim-tmux-navigation").NvimTmuxNavigateUp()
+      end,
+    },
 
-		["<C-l>"] = {
-			function()
-				require("nvim-tmux-navigation").NvimTmuxNavigateRight()
-			end,
-		},
-	},
+    ["<C-l>"] = {
+      function()
+        require("nvim-tmux-navigation").NvimTmuxNavigateRight()
+      end,
+    },
+  },
 }
 -- more keybinds!
 
 M.telescope = {
-	n = {
-		["<leader>pg"] = {
-			function()
-				require("telescope").extensions.live_grep_args.live_grep_args()
-			end,
-		},
-		["<leader>pd"] = {
-			function()
-				require("telescope").extensions.live_grep_args.live_grep_args({ cwd = vim.fn.expand("%:p:h") })
-			end,
-		},
-		["<leader>gs"] = { "<cmd> Telescope git_status <CR>", "git status" },
-		["<leader>gr"] = { "<cmd> Telescope lsp_references <CR>", "lsp references" },
-		["<leader>fr"] = { "<cmd> Telescope resume <CR>", "resume last picker" },
-		["<leader>pw"] = {
-			"<cmd>lua require('telescope.builtin').grep_string({ search = vim.fn.expand('<cword>')})<CR>",
-			"grep word under cursor",
-		},
-	},
+  n = {
+    ["<leader>pg"] = {
+      function()
+        require("telescope").extensions.live_grep_args.live_grep_args()
+      end,
+    },
+    ["<leader>pd"] = {
+      function()
+        require("telescope").extensions.live_grep_args.live_grep_args({ cwd = vim.fn.expand("%:p:h") })
+      end,
+    },
+    ["<leader>gs"] = { "<cmd> Telescope git_status <CR>", "git status" },
+    ["<leader>gr"] = { "<cmd> Telescope lsp_references <CR>", "lsp references" },
+    ["<leader>fr"] = { "<cmd> Telescope resume <CR>", "resume last picker" },
+    ["<leader>pw"] = {
+      "<cmd>lua require('telescope.builtin').grep_string({ search = vim.fn.expand('<cword>')})<CR>",
+      "grep word under cursor",
+    },
+  },
 }
 
 M.lspconfig = {
-	n = {
-		["]d"] = {
-			function()
-				vim.diagnostic.goto_next()
-			end,
-			"goto_next",
-		},
-		["<leader>sh"] = {
-			function()
-				vim.lsp.buf.signature_help()
-			end,
-			"lsp signature_help",
-		},
-	},
+  n = {
+    ["]d"] = {
+      function()
+        vim.diagnostic.goto_next()
+      end,
+      "goto_next",
+    },
+    ["<leader>sh"] = {
+      function()
+        vim.lsp.buf.signature_help()
+      end,
+      "lsp signature_help",
+    },
+  },
 }
 
 M.minisessions = {
-	n = {
-		["<leader>msw"] = { ":lua MiniSessions.write(vim.fn.input('Session Name>'))<CR>" },
-		["<leader>msd"] = { " :lua =MiniSessions.detected<CR>" },
-	},
+  n = {
+    ["<leader>msw"] = { ":lua MiniSessions.write(vim.fn.input('Session Name>'))<CR>" },
+    ["<leader>msd"] = { " :lua =MiniSessions.detected<CR>" },
+  },
 }
 
 M.harpoon = {
-	n = {
-		["<leader>a"] = { ":lua require('harpoon.mark').add_file()<CR>" },
-		["<C-e>"] = { ":lua require('harpoon.ui').toggle_quick_menu()<CR>" },
-		["<leader>j"] = { ":lua require('harpoon.ui').nav_file(1)<CR>" },
-		["<leader>k"] = { ":lua require('harpoon.ui').nav_file(2)<CR>" },
-		["<leader>l"] = { ":lua require('harpoon.ui').nav_file(3)<CR>" },
-		["<leader>;"] = { ":lua require('harpoon.ui').nav_file(4)<CR>" },
-	},
+  n = {
+    ["<leader>a"] = { ":lua require('harpoon.mark').add_file()<CR>" },
+    ["<C-e>"] = { ":lua require('harpoon.ui').toggle_quick_menu()<CR>" },
+    ["<leader>j"] = { ":lua require('harpoon.ui').nav_file(1)<CR>" },
+    ["<leader>k"] = { ":lua require('harpoon.ui').nav_file(2)<CR>" },
+    ["<leader>l"] = { ":lua require('harpoon.ui').nav_file(3)<CR>" },
+    ["<leader>;"] = { ":lua require('harpoon.ui').nav_file(4)<CR>" },
+  },
 }
 
 return M

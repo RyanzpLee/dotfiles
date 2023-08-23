@@ -16,14 +16,9 @@ zstyle ':omz:update' mode auto
     plugins=(
         git
         colored-man-pages
-        zsh-autosuggestions
         fzf
         zoxide
-        autoupdate
-        zsh-autocomplete
-        nvm
         # Source this last
-        zsh-syntax-highlighting
     )
 
     source $ZSH/oh-my-zsh.sh
@@ -49,8 +44,8 @@ zstyle ':omz:update' mode auto
 
 # Aliases & Functions {{{
 # ==============================================================================
-
-
+    # pnpm 
+    alias pn=pnpm
     # General
     alias v=nvim
     # use neovim as vim
@@ -85,6 +80,9 @@ zstyle ':omz:update' mode auto
 
     alias l="exa -l --icons --git -a"
     alias lt="exa --tree --level=2 --long --icons --git"
+    # dust
+    # xh
+    # https
 # }}}
 
 docker() {
@@ -99,15 +97,10 @@ docker() {
 source ~/dotfiles/fzf-git.sh
 
 
-export NVM_DIR="$HOME/.nvm"
 export PATH=$PATH:/usr/local/go/bin
 export PATH="/opt/homebrew/bin/python3:$PATH"
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home"
 
-# pnpm
-export PNPM_HOME="/Users/rle44/Library/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

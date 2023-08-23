@@ -158,7 +158,8 @@ _fzf_git_branches() {
     --bind "ctrl-o:execute-silent:bash $__fzf_git branch {}" \
     --bind "alt-a:change-prompt(🌳 All branches> )+reload:bash \"$__fzf_git\" all-branches" \
     --preview 'git log --oneline --graph --date=short --color=always --pretty="format:%C(auto)%cd %h%d %s" $(sed s/^..// <<< {} | cut -d" " -f1)' "$@" |
-  sed 's/^..//' | cut -d' ' -f1
+  sed 's/^..//' | cut -d' ' -f1 |
+  sed 's#^origin/##'
 }
 
 _fzf_git_tags() {
