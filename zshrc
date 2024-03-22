@@ -1,5 +1,3 @@
-# Fig pre block. Keep at the top of this file.
-[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
     source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
@@ -19,8 +17,10 @@ zstyle ':omz:update' mode auto
         git
         colored-man-pages
         fzf
+        zsh-autosuggestions
         zoxide
         # Source this last
+        zsh-syntax-highlighting
     )
 
     source $ZSH/oh-my-zsh.sh
@@ -80,8 +80,8 @@ zstyle ':omz:update' mode auto
 
     bindkey -s ^f "tmux-sessionizer\n"
 
-    alias l="exa -l --icons --git -a"
-    alias lt="exa --tree --level=2 --long --icons --git"
+    alias l="eza -l --icons --git -a --header --hyperlink"
+    alias lt="eza --tree --level=2 --long --icons --git"
     # dust
     # xh
     # https
@@ -107,5 +107,3 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# Fig post block. Keep at the bottom of this file.
-[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
